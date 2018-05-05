@@ -1,2 +1,4 @@
 # Nextion.jl
-A unofficial Julia library to communicate with Nextion screen
+
+An unofficial [Julia](https://julialang.org/) library to communicate with [Itead Nextion display](https://nextion.itead.cc/).
+
