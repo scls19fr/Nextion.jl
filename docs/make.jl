@@ -7,6 +7,10 @@ makedocs(
     sitename = "Nextion.jl",
     pages = [
         "index.md",
+        "wiring.md",
+        "hardware.md",
+        "constants.md",
+        "draw.md",
     ]
 )
 

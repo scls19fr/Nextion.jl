@@ -3,10 +3,21 @@ using Sockets  # send
 
 
 """
-Returned code values
+Module storing return codes and modes
 """
 module Return
+
+    """
+    Module storing return codes enum
+
+    Usage:
+    - `Return.Code.CMD_FINISHED`
+    - ...
+    """
     module Code
+        """
+        Return code enum
+        """
         @enum ReturnCode::UInt8 begin
             CMD_FINISHED   = 0x01
             EVENT_LAUNCHED = 0x88
@@ -32,7 +43,17 @@ module Return
         Code.ReturnCode[val][1]
     end
 
+    """
+    Module storing return modes enum
+
+    Usage:
+    - `Return.Mode.NO_RETURN`
+    - ...
+    """
     module Mode
+        """
+        Return mode enum
+        """
         @enum ReturnMode::UInt8 begin
             NO_RETURN    = 0x00  # No return
             SUCCESS_ONLY = 0x01  # Only return the successful data
@@ -44,13 +65,18 @@ end
 
 
 """
-Font alignment modes (Horizontal or Vertical)
-
-Usage:
-- Alignment.Vertical.DOWN
-- Alignment.Horizontal.RIGHT
+Module storing font alignment modes
+(Horizontal or Vertical)
 """
 module Alignment
+
+    """
+    Module storing horizontal alignment modes
+    
+    Usage:
+    - `Alignment.Horizontal.LEFT`
+    - ...
+    """
     module Horizontal
         @enum AlignmentHorizontalCode::Int8 begin
             NONE = -1  # Undefined
@@ -60,6 +86,13 @@ module Alignment
         end
     end
 
+    """
+    Module storing vertical alignment modes
+    
+    Usage:
+    - `Alignment.Vertical.DOWN`
+    - ...
+    """
     module Vertical
         @enum AlignmentVerticalCode::Int8 begin
             NONE = -1  # Undefined
@@ -72,7 +105,11 @@ end
 
 
 """
-Background modes for widgets/drawables with backgrounds
+Module storing background modes for widgets/drawables with backgrounds
+
+Usage:
+- `Background.SOLIDCOLOUR`
+- ...
 """
 module Background
     @enum BackgroundCode::Int8 begin
@@ -86,7 +123,11 @@ end
 
 
 """
-Several default colour values
+Module storing several default colour values
+
+Usage:
+- Colour.RED
+- ...
 """
 module Colour
     @enum ColourCode::Int32 begin
@@ -104,7 +145,10 @@ end
 
 
 """
-Directions for scrolling
+Module storing scrolling properties (such as directions for scrolling
+
+Usage:
+- Scroll.Direction.LEFT
 """
 module Scroll
     module Direction
@@ -201,7 +245,7 @@ function Base.write(nexSerial::NexSerial, cmd::String)
 end
 
 
-""""
+"""
     read(nexSerial)
 
 Read state of a Nextion using serial communication

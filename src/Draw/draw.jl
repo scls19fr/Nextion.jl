@@ -1,10 +1,13 @@
+"""
+The `Draw` module provides a low-level API to perform some drawings on the Nextion display.
+"""
 module Draw
     using Nextion
 
     export cls, circle, xstr, line, rectangle, picture
 
     
-    """"
+    """
         cls(nexSerial)
         cls(nexSerial, colour)
 
@@ -14,6 +17,19 @@ module Draw
     - a string
     - a decimal value
     - a `Colour.ColourCode` enum
+
+    Usage:
+    ```julia
+    using Nextion
+    Draw.cls(nexSerial)
+    ```
+
+    or
+
+    ```julia
+    using Nextion.Draw
+    cls(nexSerial)
+    ```
     """
     cls(nexSerial::NexSerial, colour::String) = send(nexSerial, "cls $colour")
     function cls(nexSerial::NexSerial, colour::Colour.ColourCode)
@@ -83,17 +99,17 @@ module Draw
     
     Print string on the device.
     
-    - x: x coordinate starting point;
-    - y: y coordinate starting point;
-    - w: area width;
-    - h: area height;
-    - fontid: Font ID;
-    - fontcolor: Font color;
-    - backcolor: Background color (when set sta as Crop Image or Image, backcolor means image ID );
-    - xcenter: Horizontal alignment (0 is left-aligned, 1 is centered, 2 is right-aligned);
-    - ycenter: Vertical alignment (0 is upper-aligned, 1 is centered, 2 is lower-aligned);
-    - sta: Background fill(0-crop image;1-solid color;2-Image; 3-No backcolor, when set sta as Crop Image or Image, backcolor means image ID);
-    - str: Character content
+    - `x`: x coordinate starting point;
+    - `y`: y coordinate starting point;
+    - `w`: area width;
+    - `h`: area height;
+    - `fontid`: Font ID;
+    - `fontcolor`: Font color;
+    - `backcolor`: Background color (when set sta as Crop Image or Image, backcolor means image ID );
+    - `xcenter`: Horizontal alignment (0 is left-aligned, 1 is centered, 2 is right-aligned);
+    - `ycenter`: Vertical alignment (0 is upper-aligned, 1 is centered, 2 is lower-aligned);
+    - `sta`: Background fill(0-crop image;1-solid color;2-Image; 3-No backcolor, when set sta as Crop Image or Image, backcolor means image ID);
+    - `str`: Character content
     """
     function xstr(nexSerial::NexSerial,
                 x::UInt16, y::UInt16,
@@ -141,6 +157,8 @@ module Draw
     """
         picture(nexSerial, x, y, w, h, picid)
 
+    !!! warning
+
     Untested
     """
     function picture(nexSerial::NexSerial,
@@ -154,7 +172,9 @@ module Draw
     """
         picture(nexSerial, x, y, w, h, x0, y0, picid)
 
-    Untested
+    !!! warning
+
+        Untested
     """
     function picture(nexSerial::NexSerial,
                 x::UInt16, y::UInt16,
