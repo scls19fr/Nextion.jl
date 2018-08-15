@@ -23,11 +23,11 @@ function Base.show(page::NexPage)
 end
 
 """
-    isshown(page)
+    isshown(page) -> Bool
 
 Return if a page is currently shown or not.
 """
-function isshown(page)
+function isshown(page::NexPage)::Bool
     pid1 = PageID(page._nid._nexSerial)  #ToDo: should be implemented
     pid2 = PageID(page)
     pid1 == pid2

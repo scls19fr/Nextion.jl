@@ -11,7 +11,7 @@ struct NexText <: AbstractNexObject
     end
 end
 
-""""
+"""
     setText(nexText, val)
 
 Set text to string value contained in `val`.
