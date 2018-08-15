@@ -6,8 +6,11 @@ Nextion
 
 ## Install
 
+Run Julia REPL and type:
+
 ```julia
-Pkg.clone("https://github.com/scls19fr/Nextion.jl")
+julia> using Pkg
+julia> Pkg.clone("https://github.com/scls19fr/Nextion.jl")
 ```
 
 ## Usage
