@@ -6,7 +6,9 @@ module Nextion
 
     export NexSerial
     export PageID, ComponentID, Name
-    export send
+    export init, send
+    # From Base: close
+    
     export setVisible, cls
     export line, draw, pic
 
@@ -19,8 +21,7 @@ module Nextion
     export Return, Alignment, Background, Colour, Scroll
     export GPIO
 
-    # From Base
-    # reset, fill
+    # From Base: close, reset
 
     # package code goes here
     include("NexHardware.jl")

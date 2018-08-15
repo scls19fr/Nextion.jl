@@ -42,6 +42,7 @@ module Return
     end
 end
 
+
 """
 Font alignment modes (Horizontal or Vertical)
 
@@ -69,6 +70,7 @@ module Alignment
     end
 end
 
+
 """
 Background modes for widgets/drawables with backgrounds
 """
@@ -81,6 +83,7 @@ module Background
         NOBACKCOLOUR = 3 # No backcolour
     end
 end
+
 
 """
 Several default colour values
@@ -99,6 +102,7 @@ module Colour
     end
 end
 
+
 """
 Directions for scrolling
 """
@@ -114,12 +118,14 @@ module Scroll
     end
 end
 
+
 abstract type AbstractNexSerial end
+
 
 """
     NexSerial(args...; kwargs...)
 
-Nextion Screen serial connexion object
+Nextion Screen serial connexion object.
 """
 struct NexSerial <: AbstractNexSerial
     function NexSerial(args...; kwargs...)
@@ -132,7 +138,7 @@ end
 """
     NexSerialMock(args...; kwargs...)
 
-Nextion Screen serial connexion object
+Nextion Screen serial connexion object.
 
 This is a mock.
 
@@ -144,6 +150,11 @@ function NexSerialMock(args...; kwargs...)
     NexSerialMock()
 end
 
+"""
+    _write_end_of_command(ser)
+
+Write end of command (3 times `0xff`) to serial `ser`
+"""
 function _write_end_of_command(ser)
     for i in 0:2
         write(ser, 0xff)
@@ -153,14 +164,15 @@ end
 """
     init(nexSerial)
 
-Initialize Nextion serial communication
+Initialize Nextion serial communication.
+
 Serial communication is initialized by baudrate=9600
 """
 function init(nexSerial::NexSerial)
     # ...
 end
 
-""""
+"""
     send(nexSerial, cmd)
 
 Send a command `cmd` to Nextion using serial communication
@@ -175,11 +187,11 @@ function send(nexSerial::NexSerial, cmd::String)
     @info "end of read."
 end
 
-""""
+"""
     write(nexSerial, cmd)
 
 Write a command `cmd` to Nextion using serial communication
-defined by `nexSerial`
+defined by `nexSerial`.
 """
 function Base.write(nexSerial::NexSerial, cmd::String)
     ser = nexSerial._serial
@@ -193,7 +205,7 @@ end
     read(nexSerial)
 
 Read state of a Nextion using serial communication
-defined by `nexSerial`
+defined by `nexSerial`.
 """
 function Base.read(nexSerial::NexSerial)
     ser = nexSerial._serial
@@ -201,10 +213,10 @@ function Base.read(nexSerial::NexSerial)
 end
 
 
-""""
+"""
     close(nexSerial)
 
-Close serial communication
+Close serial communication with Nextion display.
 """
 function Base.close(nexSerial::NexSerial)
     ser = nexSerial._serial
@@ -212,7 +224,7 @@ function Base.close(nexSerial::NexSerial)
 end
 
 
-""""
+"""
     reset(nexSerial)
 
 Reset Nextion device.
