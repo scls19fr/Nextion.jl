@@ -11,3 +11,9 @@ Some Nextion control are not visible on UI but they can be very useful.
 !!! note
 
     Only for enhanced model.
+
+## RTC
+
+!!! note
+
+    Only for enhanced model.

@@ -21,15 +21,15 @@ It's preferable to always `close` serial communication with your device before q
 NexSerial
 init
 send
-close(nexSerial::NexSerial)
-reset(nexSerial::NexSerial)
+close(::NexSerial)
+reset(::NexSerial)
 ```
 
 ### Private
 
 ```@docs
-Nextion.write(nexSerial::NexSerial, cmd::String)
+Nextion.write(::NexSerial, cmd::String)
 Nextion._write_end_of_command
-Nextion.read(nexSerial::NexSerial)
+Nextion.read(::NexSerial)
 Nextion.NexSerialMock
 ```
