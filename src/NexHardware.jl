@@ -166,21 +166,25 @@ end
 abstract type AbstractNexSerial end
 
 
+const DEFAULT_BAUDRATE = 9600
+
 """
-    NexSerial(args...; kwargs...)
+    NexSerial(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
 
 Nextion Screen serial connexion object.
+
+By default communication speed is set to DEFAULT_BAUDRATE = 9600 baud.
 """
 struct NexSerial <: AbstractNexSerial
-    function NexSerial(args...; kwargs...)
+    function NexSerial(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
         # new(SerialPort(args...; kwargs...))  # with SerialPorts.jl
-        new(open(args...; kwargs...))  # with LibSerialPort.jl
+        new(open(portname, bps, args...; kwargs...))  # with LibSerialPort.jl
     end
     _serial::SerialPort
 end
 
 """
-    NexSerialMock(args...; kwargs...)
+    NexSerialMock(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
 
 Nextion Screen serial connexion object.
 
@@ -190,7 +194,7 @@ Only use it for unit tests that don't need hardware
 """
 struct NexSerialMock <: AbstractNexSerial
 end
-function NexSerialMock(args...; kwargs...)
+function NexSerialMock(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
     NexSerialMock()
 end
 

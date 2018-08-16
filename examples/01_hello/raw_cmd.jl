@@ -1,6 +1,11 @@
 using Nextion
 
-nexSerial = NexSerial("/dev/ttyUSB0", 9600)
+nexSerial = NexSerial("/dev/ttyUSB0")
+
+send(nexSerial, "cls WHITE")
+# send(nexSerial, "rest")
+
+sleep(0.5)
 
 send(nexSerial, "t0.txt=\"Hello\"")
 
@@ -19,3 +24,5 @@ send(nexSerial, "t0.txt=\"3\"")
 sleep(0.5)
 
 send(nexSerial, "t0.txt=\"Bye\"")
+
+close(nexSerial)

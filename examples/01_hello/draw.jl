@@ -1,7 +1,7 @@
 using Nextion
 using Nextion.Draw
 
-nexSerial = NexSerial("/dev/ttyUSB0", 9600)
+nexSerial = NexSerial("/dev/ttyUSB0")
 
 const LCD_WIDTH, LCD_HEIGHT = UInt16(480), UInt16(320)
 const DEFAULT_COLOUR = Colour.WHITE

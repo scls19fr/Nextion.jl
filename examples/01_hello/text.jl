@@ -1,6 +1,6 @@
 using Nextion
 
-nexSerial = NexSerial("/dev/ttyUSB0", 9600)
+nexSerial = NexSerial("/dev/ttyUSB0")
 
 #nexText = NexText(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(1))
 #nexText = NexText(nexSerial, Name("t0"))

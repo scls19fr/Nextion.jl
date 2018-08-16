@@ -8,8 +8,9 @@ end
 
 function main()
     portname = "/dev/ttyUSB0"
-    baudrate = 9600
-    nexSerial = NexSerial(portname, baudrate)
+    #baudrate = 9600
+    #nexSerial = NexSerial(portname, baudrate)
+    nexSerial = NexSerial(portname)
     _execute_command(nexSerial, "page 0")
     sleep(2)
     _execute_command(nexSerial, "page 1")
