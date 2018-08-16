@@ -62,7 +62,9 @@ module Draw
         if mode == Background.NOBACKCOLOUR
             send(nexSerial, "draw $x1,$y1,$x2,$y2,$color")
         elseif mode == Background.SOLIDCOLOUR
-            send(nexSerial, "fill $x1,$y1,$x2,$y2,$color")
+            w = x2 - x1
+            h = y2 - y1
+            send(nexSerial, "fill $x1,$y1,$w,$h,$color")
         else
             error("Unsupported $mode")
         end

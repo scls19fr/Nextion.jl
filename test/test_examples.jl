@@ -49,6 +49,10 @@ baudrate = 9600
         @testset "text" begin
             include("../examples/01_hello/text.jl")
         end
+
+        @testset "picture" begin
+            include("../examples/01_hello/picture.jl")
+        end
     end
 
     @testset "02_page" begin
