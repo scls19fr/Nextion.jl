@@ -233,6 +233,7 @@ function send(nexSerial::NexSerial, cmd::String)
     @info "reading..."
     r = read(nexSerial)
     @info "end of read."
+    r
 end
 
 """

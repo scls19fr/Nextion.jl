@@ -11,7 +11,6 @@ using Nextion
 using Test
 
 portname = "/dev/ttyUSB0"
-baudrate = 9600
 
 @testset "Examples" begin
     @testset "Execute correct commands" begin
@@ -22,7 +21,7 @@ baudrate = 9600
         end
 
         function main()
-            nexSerial = NexSerial(portname, baudrate)
+            nexSerial = NexSerial(portname)
             _execute_command(nexSerial, "page 0")
             sleep(2)
             _execute_command(nexSerial, "page 1")
@@ -35,7 +34,7 @@ baudrate = 9600
     end
 
     @testset "Execute incorrect commands" begin
-        nexSerial = NexSerial(portname, baudrate)
+        nexSerial = NexSerial(portname)
         cmd = "pageEEE 0"
         _code = send(nexSerial, cmd)
         println(_code)
@@ -50,8 +49,8 @@ baudrate = 9600
             include("../examples/01_hello/text.jl")
         end
 
-        @testset "picture" begin
-            include("../examples/01_hello/picture.jl")
+        @testset "draw" begin
+            include("../examples/01_hello/draw.jl")
         end
     end
 
