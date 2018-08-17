@@ -17,29 +17,21 @@ end
 
 
 # IStringValued
-
-"""
-    setText(obj, val)
-
-Set text in NexText object `obj` to string value contained in `val`.
-"""
-function setText(obj::NexText, val::String)
-    setText(obj.stringvalued, val)
-end
+Base.setproperty!(obj::NexText, text::Symbol, new_text::String) = setText(obj.stringvalued, new_text)
 
 
-"""
-    getText(obj) -> String
-
-Get text from NexText object `obj` 
-"""
-function getText(obj::NexText)
-    getText(obj.stringvalued)
-end
+#function getText(obj::NexText)
+#    getText(obj.stringvalued)
+#end
+# ToDo: getproperty
 
 
 # IFontStyleable
+Base.setproperty!(obj::NexText, font::Symbol, new_font::Font) = setFont(obj.fontstyleable, new_font)
 
 function setAlignment(obj::NexText, align)
     setAlignment(obj.fontstyleable, align)
 end
+
+
+# IColourable

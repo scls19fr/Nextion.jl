@@ -14,36 +14,46 @@ send(nexSerial, "page pg_text")
 
 sleep(1)
 
-setText(nexText, "Hello!")
+nexText.text = "Hello!"
 
 sleep(0.5)
 
-setText(nexText, "1")
+nexText.text = "1"
 
 sleep(0.5)
 
-setText(nexText, "2")
+nexText.text = "2"
 
 sleep(0.5)
 
-setText(nexText, "3")
+nexText.text = "3"
 
 sleep(0.5)
 
-setText(nexText, "Bye")
+nexText.text = "4"
 
 sleep(0.5)
 
 setVisible(nexText, false)
+#nexText.visible = false
 
 sleep(0.5)
 
 setVisible(nexText, true)
+#nexText.visible = true
 
 sleep(0.5)
 
 setAlignment(nexText, Alignment.Horizontal.RIGHT)  # RIGHT CENTRE LEFT
 setAlignment(nexText, Alignment.Vertical.DOWN)  # UP CENTRE DOWN
+# nexText.alignment.horizontal = Alignment.Horizontal.RIGHT
+# nexText.alignment.vertical = Alignment.Vertical.DOWN
+
+# Change fontid from 0 to 1
+# setFont(nexText.fontstyleable, Font(1))  # level 0
+#setFont(nexText, Font(1))  # level 1 - removed
+nexText.font = Font(1)
+
 
 #reset(nexSerial)
 #sleep(0.5)

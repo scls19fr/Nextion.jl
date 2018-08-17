@@ -55,6 +55,7 @@ module Nextion
 
     export NexScrollText
     export setAlignment
+    export Font
 
     # From Base: close, reset
 

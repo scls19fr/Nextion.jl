@@ -1,3 +1,8 @@
+struct Font
+    id::UInt8
+end
+Font(id::Number) = Font(UInt8(id))
+
 """
     IFontStyleable(nexid)
 
@@ -11,11 +16,15 @@ struct IFontStyleable <: AbstractINextion
     end
 end
 
-function setFont(obj::IFontStyleable, fontid::UInt8)
-
+function setFont(obj::IFontStyleable, font::Font)
+    _nid = NexID(obj)
+    _name = String(Name(_nid))
+    cmd = "$_name.font=$(font.id)"
+    nexSerial = NexSerial(_nid)
+    send(nexSerial, cmd)
 end
 
-function getFont(obj::IFontStyleable)::UInt8
+function getFont(obj::IFontStyleable)::Font
 
 end
 
