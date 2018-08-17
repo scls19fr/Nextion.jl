@@ -43,11 +43,7 @@ module Nextion
     export PageID, ComponentID, Name
     export init, send
 
-    export cls
-    export line, draw, pic
-
     export Draw
-    export xstr
 
     export NexText, setText
     export NexPage, show, isshown
