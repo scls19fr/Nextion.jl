@@ -56,38 +56,39 @@ module Nextion
     # From Base: close, reset
 
     # package code goes here
-    include("NexHardware.jl")
+    include("hardware.jl")
 
-    include("Draw/draw.jl")
+    include("Draw/Draw.jl")
 
-    include("NexObject.jl")
-    include("interfaces.jl")
+    include("object.jl")
+    include("interfaces/interfaces.jl")
 
-    include("NexGpio.jl")
-    include("NexText.jl")
-    include("NexPage.jl")
+    include("gpio.jl")
+    include("text.jl")
+    include("page.jl")
 
     #=
-    include("NexConfig.jl")
-    include("NexTouch.jl")
-    include("NexButton.jl")
-    include("NexCheckbox.jl")
-    include("NexHotspot.jl")
-    include("NexRadio.jl")
-    include("NexUpload.jl")
-    include("NexNumber.jl")
-    include("NexScrolltext.jl")
-    include("NexVariable.jl")
-    include("NexCrop.jl")
-    include("NexSlider.jl")
-    include("NexWaveform.jl")
-    include("NexDualStateButton.jl")
-    include("NexGauge.jl")
-    include("NexPicture.jl")
-    include("NexTimer.jl")
-    include("NexProgressBar.jl")
+    include("config.jl")
+    include("touch.jl")
+    include("button.jl")
+    include("checkbox.jl")
+    include("hotspot.jl")
+    include("radio.jl")
+    include("upload.jl")
+    include("number.jl")
+    include("scrolltext.jl")
+    include("variable.jl")
+    include("crop.jl")
+    include("slider.jl")
+    include("waveform.jl")
+    include("dualstatebutton.jl")
+    include("gauge.jl")
+    include("picture.jl")
+    include("timer.jl")
+    include("progressbar.jl")
 
-    include("NexRtc.jl")
+    include("rtc.jl")
+    include("eeprom.jl")  # Flash?
 
     =#
 

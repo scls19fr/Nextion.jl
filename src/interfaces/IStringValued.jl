@@ -30,6 +30,6 @@ end
 
 Get text from Nextion object `obj`.
 """
-function setText(obj::IStringValued, val::String)
+function getText(obj::IStringValued)
     error("ToDo")
 end
