@@ -14,11 +14,24 @@ struct NexText <: AbstractNexObject
     end
 end
 
-"""
-    setText(nexText, val)
 
-Set text to string value contained in `val`.
+# IStringValued
+
 """
-function setText(nexText::NexText, val::String)
-    setText(nexText.stringvalued, val)
+    setText(obj, val)
+
+Set text in NexText object `obj` to string value contained in `val`.
+"""
+function setText(obj::NexText, val::String)
+    setText(obj.stringvalued, val)
+end
+
+
+"""
+    getText(obj) -> String
+
+Get text from NexText object `obj` 
+"""
+function getText(obj::NexText)
+    getText(obj.stringvalued)
 end

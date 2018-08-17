@@ -3,6 +3,8 @@ Abstract type for interfaces for Nextion objects
 """
 abstract type AbstractINextion end
 
+NexID(interface::AbstractINextion) = interface._nid
+
 include("IBooleanValued.jl")
 include("ICallback.jl")
 include("IColourable.jl")

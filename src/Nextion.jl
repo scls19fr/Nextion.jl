@@ -53,6 +53,8 @@ module Nextion
     export Return, Alignment, Background, Colour, Scroll
     export GPIO
 
+    export NexScrollText
+
     # From Base: close, reset
 
     # package code goes here
@@ -66,6 +68,7 @@ module Nextion
     include("gpio.jl")
     include("text.jl")
     include("page.jl")
+    include("scrolltext.jl")
 
     #=
     include("config.jl")
@@ -76,7 +79,6 @@ module Nextion
     include("radio.jl")
     include("upload.jl")
     include("number.jl")
-    include("scrolltext.jl")
     include("variable.jl")
     include("crop.jl")
     include("slider.jl")

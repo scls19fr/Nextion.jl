@@ -3,13 +3,14 @@
 
 An interface for string valued widgets.
 """
-struct IStringValued <: AbstractNexObject
+struct IStringValued <: AbstractINextion
     _nid::NexID
 
     function IStringValued(nid::NexID)
         new(nid)
     end
 end
+
 
 """
     setText(obj, val)
@@ -30,6 +31,6 @@ end
 
 Get text from Nextion object `obj`.
 """
-function getText(obj::IStringValued)
+function getText(obj::IStringValued)::String
     error("ToDo")
 end
