@@ -7,10 +7,11 @@ struct NexText <: AbstractNexObject
     _nid::NexID
 
     stringvalued::IStringValued
+    fontstyleable::IFontStyleable
 
     function NexText(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IStringValued(nid))
+        new(nid, IStringValued(nid), IFontStyleable(nid))
     end
 end
 
@@ -34,4 +35,11 @@ Get text from NexText object `obj`
 """
 function getText(obj::NexText)
     getText(obj.stringvalued)
+end
+
+
+# IFontStyleable
+
+function setAlignment(obj::NexText, align)
+    setAlignment(obj.fontstyleable, align)
 end

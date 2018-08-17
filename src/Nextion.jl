@@ -54,6 +54,7 @@ module Nextion
     export GPIO
 
     export NexScrollText
+    export setAlignment
 
     # From Base: close, reset
 
