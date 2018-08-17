@@ -11,6 +11,7 @@ Some `Enum`s have been defined to simplify settings of Nextion display with this
 ```@docs
 Return.Code
 Return.Mode
+Colour
 Alignment.Horizontal
 Alignment.Vertical
 ```

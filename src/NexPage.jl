@@ -11,18 +11,47 @@ struct NexPage <: AbstractNexObject
     end
 end
 
-"""
-    show(page)
 
-Show Nextion page named `page`.
 """
-function Base.show(page::NexPage)
+    show(page, Name)
+
+Show Nextion page named `page` using its name.
+"""
+function Base.show(page::NexPage, ::Type{Name})
     _nid = NexID(page)
     _name = String(Name(_nid))
     cmd = "page $_name"
     nexSerial = NexSerial(_nid)
     send(nexSerial, cmd)
 end
+
+
+"""
+    show(page, PageID)
+
+Show Nextion page named `page` using its page id.
+"""
+function Base.show(page::NexPage, ::Type{PageID})
+    _nid = NexID(page)
+    _pid = String(PageID(_nid))
+    cmd = "page $_pid"
+    nexSerial = NexSerial(_nid)
+    send(nexSerial, cmd)
+end
+
+
+"""
+    show(page)
+
+Show Nextion page named `page`.
+
+It calls `show(page, Name)` so it's showing
+page using its name.
+"""
+function Base.show(page::NexPage)
+    show(page, Name)
+end
+
 
 """
     isshown(page) -> Bool
