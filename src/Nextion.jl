@@ -37,12 +37,13 @@ Reference documents for implementation:
 module Nextion
     import Base: show, read, write, close, reset,
                     setproperty!, getproperty
+    import Sockets: send
 
     export NexSerial
     export PageID, ComponentID, Name
     export init, send
 
-    export setVisible, cls
+    export cls
     export line, draw, pic
 
     export Draw
