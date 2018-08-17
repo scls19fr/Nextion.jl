@@ -17,9 +17,11 @@ end
 Show Nextion page named `page`.
 """
 function Base.show(page::NexPage)
-    _name = String(Name(page))
+    _nid = NexID(page)
+    _name = String(Name(_nid))
     cmd = "page $_name"
-    _send(page, cmd)
+    nexSerial = NexSerial(_nid)
+    send(nexSerial, cmd)
 end
 
 """
@@ -28,7 +30,8 @@ end
 Return if a page is currently shown or not.
 """
 function isshown(page::NexPage)::Bool
-    pid1 = PageID(page._nid._nexSerial)  #ToDo: should be implemented
+    _nid = NexID(page)
+    pid1 = PageID(_nid._nexSerial)  #ToDo: should be implemented
     pid2 = PageID(page)
     pid1 == pid2
 end

@@ -5,6 +5,7 @@ nexSerial = NexSerial("/dev/ttyUSB0")
 #nexText = NexText(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(1))
 #nexText = NexText(nexSerial, Name("t0"))
 nexText = NexText(nexSerial, Name("t0"), cid=ComponentID(1))
+send(nexSerial, "page 0")
 
 setText(nexText, "Hello!")
 
@@ -34,8 +35,7 @@ setVisible(nexText, true)
 
 sleep(0.5)
 
-reset(nexSerial)
-
-sleep(0.5)
+#reset(nexSerial)
+#sleep(0.5)
 
 close(nexSerial)

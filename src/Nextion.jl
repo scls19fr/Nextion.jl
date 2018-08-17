@@ -57,9 +57,11 @@ module Nextion
 
     # package code goes here
     include("NexHardware.jl")
+
     include("Draw/draw.jl")
 
     include("NexObject.jl")
+    include("interfaces.jl")
 
     include("NexGpio.jl")
     include("NexText.jl")

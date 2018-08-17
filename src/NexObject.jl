@@ -4,6 +4,7 @@ of ITEAD Nextion display objects
 """
 abstract type AbstractNexObject end
 
+
 """
     PageID(pid)
 
@@ -13,6 +14,7 @@ struct PageID
     _val::UInt8
 end
 PageID() = PageID(0)
+
 
 """
     ComponentID(pid)
@@ -24,6 +26,7 @@ struct ComponentID
 end
 ComponentID() = ComponentID(0)
 
+
 """
     Name(s)
 
@@ -33,6 +36,7 @@ struct Name
     _s::String
 end
 String(name::Name) = name._s
+
 
 """
     NexID(nexSerial, pid, cid, name)
@@ -47,43 +51,58 @@ struct NexID{T <: AbstractNexSerial}
     _cid::ComponentID  # Component ID
 end
 
-"""
-    PageID(obj) -> PageID
 
-Return `PageID` of Nextion object `obj`.
 """
-function PageID(obj::AbstractNexObject)::PageID
-    obj._nid._pid
+    PageID(nid) -> PageID
+
+Return `PageID` from `NexID` `nid`.
+"""
+function PageID(nid::NexID)::PageID
+    nid._pid
 end
 String(pid::PageID) = string(pid._val)
 
-"""
-    ComponentID(obj) -> ComponentID
 
-Return `ComponentID` of Nextion object `obj`.
 """
-function ComponentID(obj::AbstractNexObject)::ComponentID
-    obj._nid._cid
+    ComponentID(nid) -> ComponentID
+
+Return `ComponentID` from `NexID` `nid`.
+"""
+function ComponentID(nid::NexID)::ComponentID
+    nid._cid
 end
 String(cid::ComponentID) = string(cid._val)
 
-"""
-    Name(obj) -> Name
 
-Return `Name` of Nextion object `obj`.
 """
-function Name(obj::AbstractNexObject)::Name
-    obj._nid._name
+    Name(nid) -> Name
+
+Return `Name` from `NexID` `nid`.
+"""
+function Name(nid::NexID)::Name
+    nid._name
 end
 
-"""
-    _send(obj, cmd)
 
-Send command `cmd` to Nextion object `obj`.
 """
-function _send(obj::AbstractNexObject, cmd)
-    send(obj._nid._nexSerial, cmd)
+    NexSerial(nid) -> NexSerial
+
+Return NexSerial from NexID `nid`
+"""
+function NexSerial(nid::NexID)
+    nid._nexSerial
 end
+
+
+"""
+    NexID(obj) -> NexID
+
+Return `NexID` from Nextion object obj.
+"""
+function NexID(obj::AbstractNexObject)
+    obj._nid
+end
+
 
 """
     setVisible(obj, val)
@@ -92,14 +111,16 @@ Display Nextion object `obj` when `val` is `true`.
 Hide it when `val` is `false`.
 """
 function setVisible(obj::AbstractNexObject, val::Bool)
-    _o = String(Name(obj))
-    #_o = String(ComponentID(obj))
+    nid = NexID(obj)
+    _o = String(Name(nid))
+    #_o = String(ComponentID(nid))
     if val
         cmd = "vis $_o,1"
     else
         cmd = "vis $_o,0"
     end
-    _send(obj, cmd)
+    nexSerial = NexSerial(nid)
+    send(nexSerial, cmd)
 end
 
 #function name(obj::AbstractNexObject)

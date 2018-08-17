@@ -1,0 +1,7 @@
+include("IBooleanValued.jl")
+include("ICallback.jl")
+include("IColourable.jl")
+include("IFontStyleable.jl")
+include("INumericalValued.jl")
+include("IStringValued.jl")
+include("ITouchable.jl")

@@ -25,8 +25,9 @@ using Test
     @testset "NexText" begin
         nexSerial = NexSerialMock()
         nexText = NexText(nexSerial, Name("t0"), pid=PageID(2), cid=ComponentID(3))
-        @test Name(nexText) == Name("t0")
-        @test PageID(nexText) == PageID(2)
-        @test ComponentID(nexText) == ComponentID(3)
+        nid = NexID(nexText)
+        @test Name(nid) == Name("t0")
+        @test PageID(nid) == PageID(2)
+        @test ComponentID(nid) == ComponentID(3)
     end
 end

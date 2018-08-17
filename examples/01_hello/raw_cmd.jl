@@ -2,6 +2,8 @@ using Nextion
 
 nexSerial = NexSerial("/dev/ttyUSB0")
 
+send(nexSerial, "page 0")
+
 send(nexSerial, "cls WHITE")
 # send(nexSerial, "rest")
 
