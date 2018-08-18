@@ -13,24 +13,18 @@ using Test
 portname = "/dev/ttyUSB0"
 
 @testset "Examples" begin
-    @testset "Execute correct commands" begin
-        function _execute_command(nexSerial, cmd)
-            println(cmd)
-            _code = send(nexSerial, cmd)
-            println(_code)
-        end
+    #@testset "hello_serialports" begin
+        #include("../examples/hello_serialports.jl")  # this is broken using LibSerialPort.jl instead
+    #end
 
-        function main()
-            nexSerial = NexSerial(portname)
-            _execute_command(nexSerial, "page 0")
-            sleep(2)
-            _execute_command(nexSerial, "page 1")
-            sleep(2)
-            _execute_command(nexSerial, "t0.txt=\"Hello\"")
-            close(nexSerial)
-        end
+    @testset "hello_libserial" begin
+        include("../examples/hello_libserial.jl")
+        @test true
+    end
 
-        main()
+    @testset "hello_nextion" begin
+        include("../examples/hello_nextion.jl")
+        @test true
     end
 
     @testset "Execute incorrect commands" begin
@@ -39,33 +33,32 @@ portname = "/dev/ttyUSB0"
         _code = send(nexSerial, cmd)
         println(_code)
         close(nexSerial)
+        @test true
     end
 
-    @testset "01_hello" begin
-        @testset "raw_cmd" begin
-            include("../examples/01_hello/raw_cmd.jl")
-        end
-        @testset "text" begin
-            include("../examples/01_hello/text.jl")
-        end
-
-        @testset "draw" begin
-            include("../examples/01_hello/draw.jl")
-        end
+    @testset "raw_cmd" begin
+        include("../examples/raw_cmd.jl")
+        @test true
     end
 
-    @testset "02_page" begin
-        @testset "hello_libserial" begin
-            include("../examples/02_page/hello_libserial.jl")
-        end
-
-        #@testset "hello_serialports" begin
-            #include("../examples/02_page/hello_serialports.jl")
-        #end
-
-        @testset "page" begin
-            include("../examples/02_page/page.jl")
-        end
+    @testset "page" begin
+        include("../examples/page.jl")
+        @test true
     end
-    
+
+    @testset "text" begin
+        include("../examples/text.jl")
+        @test true
+    end
+
+    @testset "draw" begin
+        include("../examples/draw.jl")
+        @test true
+    end
+
+    @testset "scroll" begin
+        include("../examples/scroll.jl")
+        @test true
+    end
+
 end

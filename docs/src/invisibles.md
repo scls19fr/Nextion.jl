@@ -6,6 +6,10 @@ Some Nextion control are not visible on UI but they can be very useful.
 
 ## EEPROM
 
+!!! note
+
+    Only for enhanced model.
+
 ## GPIO
 
 !!! note

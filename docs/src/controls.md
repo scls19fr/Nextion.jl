@@ -13,7 +13,7 @@ A `NexPage` is the main element of a Nextion UI. It's where controls are put on.
 ```@docs
 NexPage
 Base.show(::NexPage)
-isshown(pae::NexPage)
+isshown(::NexPage)
 ```
 
 ## Text
@@ -29,4 +29,15 @@ A `NexText` is a Nextion UI control to display text on a page
 ```@docs
 NexText
 setText(::NexText, ::String)
+```
+
+## Scrolltext
+### Overview
+
+
+### API
+
+#### Public
+```@docs
+Scroll.Direction
 ```

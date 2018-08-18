@@ -35,17 +35,15 @@ Reference documents for implementation:
 - [https://www.itead.cc/wiki/Nextion_Instruction_Set](https://www.itead.cc/wiki/Nextion_Instruction_Set)
 """
 module Nextion
+    import Base: show, read, write, close, reset,
+                    setproperty!, getproperty
+    import Sockets: send
 
     export NexSerial
     export PageID, ComponentID, Name
     export init, send
-    # From Base: close
-
-    export setVisible, cls
-    export line, draw, pic
 
     export Draw
-    export xstr
 
     export NexText, setText
     export NexPage, show, isshown
@@ -53,39 +51,44 @@ module Nextion
     export Return, Alignment, Background, Colour, Scroll
     export GPIO
 
-    # From Base: close, reset
+    export NexScrollText
+    export setAlignment
+    export Font
 
     # package code goes here
-    include("NexHardware.jl")
-    include("Draw/draw.jl")
+    include("hardware.jl")
 
-    include("NexObject.jl")
+    include("Draw/Draw.jl")
 
-    include("NexGpio.jl")
-    include("NexText.jl")
-    include("NexPage.jl")
+    include("object.jl")
+    include("interfaces/interfaces.jl")
+
+    include("gpio.jl")
+    include("text.jl")
+    include("page.jl")
+    include("scrolltext.jl")
 
     #=
-    include("NexConfig.jl")
-    include("NexTouch.jl")
-    include("NexButton.jl")
-    include("NexCheckbox.jl")
-    include("NexHotspot.jl")
-    include("NexRadio.jl")
-    include("NexUpload.jl")
-    include("NexNumber.jl")
-    include("NexScrolltext.jl")
-    include("NexVariable.jl")
-    include("NexCrop.jl")
-    include("NexSlider.jl")
-    include("NexWaveform.jl")
-    include("NexDualStateButton.jl")
-    include("NexGauge.jl")
-    include("NexPicture.jl")
-    include("NexTimer.jl")
-    include("NexProgressBar.jl")
+    include("config.jl")
+    include("touch.jl")
+    include("button.jl")
+    include("checkbox.jl")
+    include("hotspot.jl")
+    include("radio.jl")
+    include("upload.jl")
+    include("number.jl")
+    include("variable.jl")
+    include("crop.jl")
+    include("slider.jl")
+    include("waveform.jl")
+    include("dualstatebutton.jl")
+    include("gauge.jl")
+    include("picture.jl")
+    include("timer.jl")
+    include("progressbar.jl")
 
-    include("NexRtc.jl")
+    include("rtc.jl")
+    include("eeprom.jl")  # Flash?
 
     =#
 
