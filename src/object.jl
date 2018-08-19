@@ -83,6 +83,32 @@ function Name(nid::NexID)::Name
     nid._name
 end
 
+"""
+    setNexProperty(nid::NexID, property::Symbol, val)
+
+Set property of a Nextion object given by it's NexID
+
+# Example:
+`setNexProperty(NexID("t0"), :txt, "Hello!")` send and execute
+on the Nextion display `t0.txt="Hello"`
+"""
+function setNexProperty(nid::NexID, property::Symbol, val::String)
+    _name = String(Name(nid))
+    _property = String(property)
+    cmd = "$_name.$_property=\"$val\""
+    nexSerial = NexSerial(nid)
+    send(nexSerial, cmd)
+end
+
+function setNexProperty(nid::NexID, property::Symbol, val)
+    _name = String(Name(nid))
+    _property = String(property)
+    cmd = "$_name.$_property=$val"
+    nexSerial = NexSerial(nid)
+    send(nexSerial, cmd)
+end
+
+
 
 """
     NexSerial(nid) -> NexSerial

@@ -35,8 +35,12 @@ function setproperty!(obj::NexQRcode, property::Symbol, new_val)
     if property == :text
         setText(obj.stringvalued, new_val)
     elseif property == :textmaxlength
-        error("ToDo")
-    else
-        error("Unsupported property $property")
+        error("text max length property can only be set using Nextion Editor")
+        #nid = NexID(obj)
+        #if new_val >= 0 && new_val <= 192
+        #    setNexProperty(nid, :txt_maxl, Int32(new_val))
+        #else
+        #    error("Trying to max length to $new_val but it must be in 0-192")
+        #end
     end
 end
