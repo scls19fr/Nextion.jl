@@ -18,11 +18,7 @@ end
 Set text from string value contained in `val` to Nextion object `obj`.
 """
 function setText(obj::IStringValued, val::String)
-    _nid = NexID(obj)
-    _name = String(Name(_nid))
-    cmd = "$_name.txt=\"$val\""
-    nexSerial = NexSerial(_nid)
-    send(nexSerial, cmd)
+    setNexProperty(NexID(obj), :txt, val)
 end
 
 
@@ -32,5 +28,5 @@ end
 Get text from Nextion object `obj`.
 """
 function getText(obj::IStringValued)::String
-    error("ToDo")
+    getNexProperty(NexID(obj), :font, String)
 end

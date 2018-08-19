@@ -32,7 +32,7 @@ using Test
 
     @testset "Scroll" begin
         @testset "Scroll Direction" begin
-            @test Integer(Scroll.Direction.LEFT) == 1
+            @test Integer(Scroll.Direction.LEFT_TO_RIGHT) == 0
         end
     end
 

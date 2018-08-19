@@ -22,33 +22,19 @@ struct IFontStyleable <: AbstractINextion
 end
 
 function setFont(obj::IFontStyleable, font::Font)
-    _nid = NexID(obj)
-    _name = String(Name(_nid))
-    cmd = "$_name.font=$(font.id)"
-    nexSerial = NexSerial(_nid)
-    send(nexSerial, cmd)
+    setNexProperty(NexID(obj), :font, font.id)
 end
 
 function getFont(obj::IFontStyleable)::Font
-
+    # Font(getNexProperty(NexID(obj), :font, Int))
 end
 
 function setAlignment(obj::IFontStyleable, align::Alignment.Horizontal.AlignmentHorizontalCode)
-    _nid = NexID(obj)
-    _name = String(Name(_nid))
-    align_id = Int(align)
-    cmd = "$_name.xcen=$align_id"
-    nexSerial = NexSerial(_nid)
-    send(nexSerial, cmd)
+    setNexProperty(NexID(obj), :xcen, Int(align))
 end
 
 function setAlignment(obj::IFontStyleable, align::Alignment.Vertical.AlignmentVerticalCode)
-    _nid = NexID(obj)
-    _name = String(Name(_nid))
-    align_id = Int(align)
-    cmd = "$_name.ycen=$align_id"
-    nexSerial = NexSerial(_nid)
-    send(nexSerial, cmd)
+    setNexProperty(NexID(obj), :ycen, Int(align))
 end
 
 function refresh()

@@ -28,7 +28,9 @@ A `NexText` is a Nextion UI control to display text on a page
 
 ```@docs
 NexText
-setText(::NexText, ::String)
+setproperty!(::NexText, ::Symbol, ::Font)
+setproperty!(::NexText, ::Symbol, ::Bool)
+setproperty!(::NexText, ::Symbol, ::String)
 ```
 
 ## Scrolltext

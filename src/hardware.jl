@@ -143,20 +143,20 @@ module Colour
 end
 
 
-"""
-Module storing scrolling properties (such as directions for scrolling
-
-Usage:
-- Scroll.Direction.LEFT
-"""
 module Scroll
+    """
+    Module storing scrolling properties (such as directions for scrolling
+
+    Usage:
+    - Scroll.Direction.LEFT_TO_RIGHT
+    """
     module Direction
         @enum ScrollDirectionCode::Int8 begin
             NONE = -1
-            LEFT = 1
-            RIGHT = 0
-            UP = 3
-            DOWN = 2
+            LEFT_TO_RIGHT = 0
+            RIGHT_TO_LEFT = 1
+            UP_TO_DOWN = 2
+            DOWN_TO_UP = 3
         end
     end
 end
