@@ -7,9 +7,9 @@ using Test
         @testset "Return Codes" begin
             @test Integer(Return.Code.CMD_FINISHED) == 0x01
             
-            #_code = Return.code(0x01)
-            #@test _code == Return.Code.CMD_FINISHED
-            #@test string(_code) == "CMD_FINISHED"
+            _code = Return.code(0x01)
+            @test _code == Return.Code.CMD_FINISHED
+            @test string(_code) == "CMD_FINISHED"
             @test_broken "ToDo Should be fixed!" == 2
         end
         @testset "Return Modes" begin

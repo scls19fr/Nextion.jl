@@ -39,7 +39,7 @@ module Return
     end
 
     function code(val::UInt8)
-        Code.ReturnCode[val][1]
+        Code.ReturnCode(val)
     end
 
     """
