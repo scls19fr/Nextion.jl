@@ -51,9 +51,14 @@ module Nextion
     export Return, Alignment, Background, Colour, Scroll
     export GPIO
 
+    export NexNumber
+
     export NexScrollText
     export setAlignment
     export Font
+
+    export NexProgressBar
+    export NexQRcode
 
     # package code goes here
     include("hardware.jl")
@@ -67,6 +72,9 @@ module Nextion
     include("text.jl")
     include("page.jl")
     include("scrolltext.jl")
+    include("number.jl")
+    include("progressbar.jl")
+    include("qrcode.jl")
 
     #=
     include("config.jl")
@@ -76,7 +84,6 @@ module Nextion
     include("hotspot.jl")
     include("radio.jl")
     include("upload.jl")
-    include("number.jl")
     include("variable.jl")
     include("crop.jl")
     include("slider.jl")
@@ -85,7 +92,6 @@ module Nextion
     include("gauge.jl")
     include("picture.jl")
     include("timer.jl")
-    include("progressbar.jl")
 
     include("rtc.jl")
     include("eeprom.jl")  # Flash?

@@ -52,7 +52,8 @@ function setAlignment(obj::NexText, align)
     setAlignment(obj.fontstyleable, align)
 end
 
-#Base.getproperty(obj::NexText, alignment::Symbol) = 0 # AlignmentDirection(NexID(obj))
+#function getproperty(obj::NexText, alignment::Symbol)
+#end
 
 
 # IColourable
