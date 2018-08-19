@@ -8,9 +8,14 @@ send(nexSerial, "page pg_qr")
 
 sleep(1)
 
-nexQRcode.text = "Hello"
+text = "Hello"
+nexQRcode.text = text
 
 sleep(2)
 
-nexQRcode.textmaxlength = 40
-nexQRcode.text = "https://github.com/scls19fr/Nextion.jl"
+#text = "https://github.com/scls19fr/Nextion.jl"
+text = "http://bit.ly/2vWS75r"
+#nexQRcode.textmaxlength = length(text)
+#nexQRcode.textmaxlength = 50
+#sleep(1)
+nexQRcode.text = text

@@ -67,7 +67,7 @@ portname = "/dev/ttyUSB0"
     end
 
     @testset "pbar" begin
-        include("../examples/pbat.jl")
+        include("../examples/pbar.jl")
         @test true
     end
 

@@ -17,16 +17,16 @@ end
 
 Set value from `val` to Nextion object `obj`.
 """
-function setValue(obj::INumericalValued, val::Unsigned)
-    error("ToDo")
+function setValue(obj::INumericalValued, val::Integer)
+    setNexProperty(NexID(obj), :val, Int32(val))
 end
 
 
 """
-    getText(obj) -> Unsigned
+    getText(obj)
 
 Get value from Nextion object `obj`.
 """
-function getValue(obj::INumericalValued)::Unsigned
-    error("ToDo")
+function getValue(obj::INumericalValued)
+    getNexProperty(NexID(obj), :val, Int)
 end

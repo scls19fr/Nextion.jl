@@ -5,6 +5,16 @@ abstract type AbstractINextion end
 
 NexID(interface::AbstractINextion) = interface._nid
 
+
+function getNexProperty(obj::AbstractINextion, property::Symbol, ::Type{Int})
+    error("ToDo")
+end
+
+function getNexProperty(obj::AbstractINextion, property::Symbol, ::Type{String})
+    error("ToDo")
+end
+
+
 include("IViewable.jl")
 include("IBooleanValued.jl")
 include("ICallback.jl")
