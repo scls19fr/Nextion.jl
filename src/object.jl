@@ -104,25 +104,6 @@ function NexID(obj::AbstractNexObject)
 end
 
 
-"""
-    setVisible(obj, val)
-
-Display Nextion object `obj` when `val` is `true`.
-Hide it when `val` is `false`.
-"""
-function setVisible(obj::AbstractNexObject, val::Bool)
-    nid = NexID(obj)
-    _o = String(Name(nid))
-    #_o = String(ComponentID(nid))
-    if val
-        cmd = "vis $_o,1"
-    else
-        cmd = "vis $_o,0"
-    end
-    nexSerial = NexSerial(nid)
-    send(nexSerial, cmd)
-end
-
 #function name(obj::AbstractNexObject)
 #    @deprecate name(obj) get(obj, Name)
 #    obj._nid._name

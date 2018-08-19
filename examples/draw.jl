@@ -7,6 +7,7 @@ const LCD_WIDTH, LCD_HEIGHT = UInt16(480), UInt16(320)
 const DEFAULT_COLOUR = Colour.WHITE
 const IMG_WIDTH, IMG_HEIGHT = UInt16(200), UInt16(135)
 
+send(nexSerial, "page0")
 cls(nexSerial, DEFAULT_COLOUR)
 
 function print_several_lines(nexSerial; lcd_width=LCD_WIDTH, color1="WHITE", color2="BLACK")

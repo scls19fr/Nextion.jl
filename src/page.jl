@@ -17,7 +17,7 @@ end
 
 Show Nextion page named `page` using its name.
 """
-function Base.show(page::NexPage, ::Type{Name})
+function show(page::NexPage, ::Type{Name})
     _nid = NexID(page)
     _name = String(Name(_nid))
     cmd = "page $_name"
@@ -31,7 +31,7 @@ end
 
 Show Nextion page named `page` using its page id.
 """
-function Base.show(page::NexPage, ::Type{PageID})
+function show(page::NexPage, ::Type{PageID})
     _nid = NexID(page)
     _pid = String(PageID(_nid))
     cmd = "page $_pid"
@@ -48,7 +48,7 @@ Show Nextion page named `page`.
 It calls `show(page, Name)` so it's showing
 page using its name.
 """
-function Base.show(page::NexPage)
+function show(page::NexPage)
     show(page, Name)
 end
 

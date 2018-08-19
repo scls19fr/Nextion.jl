@@ -1,5 +1,4 @@
 using LibSerialPort
-using Sockets  # send
 
 
 """
@@ -144,20 +143,20 @@ module Colour
 end
 
 
-"""
-Module storing scrolling properties (such as directions for scrolling
-
-Usage:
-- Scroll.Direction.LEFT
-"""
 module Scroll
+    """
+    Module storing scrolling properties (such as directions for scrolling
+
+    Usage:
+    - Scroll.Direction.LEFT_TO_RIGHT
+    """
     module Direction
         @enum ScrollDirectionCode::Int8 begin
             NONE = -1
-            LEFT = 1
-            RIGHT = 0
-            UP = 3
-            DOWN = 2
+            LEFT_TO_RIGHT = 0
+            RIGHT_TO_LEFT = 1
+            UP_TO_DOWN = 2
+            DOWN_TO_UP = 3
         end
     end
 end
@@ -242,7 +241,7 @@ end
 Write a command `cmd` to Nextion using serial communication
 defined by `nexSerial`.
 """
-function Base.write(nexSerial::NexSerial, cmd::String)
+function write(nexSerial::NexSerial, cmd::String)
     ser = nexSerial._serial
     @info "write '$cmd' to $ser"
     write(ser, cmd)
@@ -256,7 +255,7 @@ end
 Read state of a Nextion using serial communication
 defined by `nexSerial`.
 """
-function Base.read(nexSerial::NexSerial)
+function read(nexSerial::NexSerial)
     ser = nexSerial._serial
     r = read(ser, UInt8)
 end
@@ -267,7 +266,7 @@ end
 
 Close serial communication with Nextion display.
 """
-function Base.close(nexSerial::NexSerial)
+function close(nexSerial::NexSerial)
     ser = nexSerial._serial
     close(ser)
 end
@@ -278,6 +277,6 @@ end
 
 Reset Nextion device.
 """
-function Base.reset(nexSerial::NexSerial)
+function reset(nexSerial::NexSerial)
     send(nexSerial, "rest")
 end

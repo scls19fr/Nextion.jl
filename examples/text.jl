@@ -30,19 +30,20 @@ nexText.text = "3"
 
 sleep(0.5)
 
-nexText.text = "4"
+nexText.text = "Bye nexText"
 
 sleep(0.5)
 
-setVisible(nexText, false)
-#nexText.visible = false
+nexText.visible = false
+
+sleep(2)
+
+nexText.visible = true
 
 sleep(0.5)
 
-setVisible(nexText, true)
-#nexText.visible = true
 
-sleep(0.5)
+#println(nexText.alignment)
 
 setAlignment(nexText, Alignment.Horizontal.RIGHT)  # RIGHT CENTRE LEFT
 setAlignment(nexText, Alignment.Vertical.DOWN)  # UP CENTRE DOWN
