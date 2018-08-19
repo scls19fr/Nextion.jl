@@ -17,9 +17,20 @@ struct NexText <: AbstractNexObject
 end
 
 # IViewable
+"""
+    obj.visible = val
+
+Display Nextion object `obj` when `val` is `true`.
+Hide it when `val` is `false`.
+"""
 setproperty!(obj::NexText, visible::Symbol, new_val::Bool) = setVisible(obj.viewable, new_val)
 
 # IStringValued
+"""
+    obj.text = text_value
+
+Set text from string value contained in `text_value` to Nextion object `obj`.
+"""
 setproperty!(obj::NexText, text::Symbol, new_val::String) = setText(obj.stringvalued, new_val)
 
 
@@ -30,6 +41,11 @@ setproperty!(obj::NexText, text::Symbol, new_val::String) = setText(obj.stringva
 
 
 # IFontStyleable
+"""
+    obj.font = new_font
+
+Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
+"""
 setproperty!(obj::NexText, font::Symbol, new_font::Font) = setFont(obj.fontstyleable, new_font)
 
 function setAlignment(obj::NexText, align)
