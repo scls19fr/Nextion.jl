@@ -50,10 +50,10 @@ function setproperty!(obj::NexText, property::Symbol, new_val)
     elseif property == :font
         setFont(obj.fontstyleable, new_val)
 
-    # Error
+    # setfield!
 
     else
-        error("setproperty! error '$property'")    
+        setfield!(obj, property, new_val)
 
     end
 end

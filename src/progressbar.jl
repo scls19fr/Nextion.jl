@@ -41,7 +41,6 @@ function setproperty!(obj::NexProgressBar, property::Symbol, new_val::Integer)
 
     # Error
     else
-        error("setproperty! error '$property'")    
-
+        setfield!(obj, property)
     end
 end

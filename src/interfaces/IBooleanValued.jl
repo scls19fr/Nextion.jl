@@ -23,7 +23,7 @@ end
 
 
 """
-    getText(obj) -> Bool
+    getValue(obj) -> Bool
 
 Get boolean value from Nextion object `obj`.
 """

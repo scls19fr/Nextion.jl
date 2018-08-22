@@ -35,7 +35,7 @@ function setproperty!(obj::NexQRcode, property::Symbol, new_val)
         obj.viewable.visible = new_val
     
     # IStringValued
-    
+
     elseif property == :text
         obj.stringvalued.value = new_val
     elseif property == :textmaxlength
@@ -47,11 +47,8 @@ function setproperty!(obj::NexQRcode, property::Symbol, new_val)
         #    error("Trying to max length to $new_val but it must be in 0-192")
         #end
 
-    # Error
-
     else
-        error("setproperty! error '$property'")    
-
+        setfield!(obj, property)
     end
 
 end

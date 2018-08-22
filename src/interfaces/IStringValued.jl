@@ -15,21 +15,20 @@ end
 function setproperty!(obj::IStringValued, property::Symbol, new_val)
 
     if property == :value
-        setNexProperty(NexID(obj), :txt, new_val)
+        setnexproperty!(NexID(obj), :txt, new_val)
     else
-        error("setproperty! error '$property'")
+        setfield!(obj, property, new_val)
     end
 
 end
 
 
+function getproperty(obj::IStringValued, property::Symbol)
 
+    if property == :value
+        getnexproperty(NexID(obj), :font, String)
+    else
+        getfield(obj, property)
+    end
 
-"""
-    getText(obj) -> String
-
-Get text from Nextion object `obj`.
-"""
-function getText(obj::IStringValued)::String
-    getNexProperty(NexID(obj), :font, String)
 end

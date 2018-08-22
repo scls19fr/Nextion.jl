@@ -22,7 +22,7 @@ struct IFontStyleable <: AbstractINextion
 end
 
 function setFont(obj::IFontStyleable, font::Font)
-    setNexProperty(NexID(obj), :font, font.id)
+    setnexproperty!(NexID(obj), :font, font.id)
 end
 
 function getFont(obj::IFontStyleable)::Font
@@ -30,11 +30,11 @@ function getFont(obj::IFontStyleable)::Font
 end
 
 function setAlignment(obj::IFontStyleable, align::Alignment.Horizontal.AlignmentHorizontalCode)
-    setNexProperty(NexID(obj), :xcen, Int(align))
+    setnexproperty!(NexID(obj), :xcen, Int(align))
 end
 
 function setAlignment(obj::IFontStyleable, align::Alignment.Vertical.AlignmentVerticalCode)
-    setNexProperty(NexID(obj), :ycen, Int(align))
+    setnexproperty!(NexID(obj), :ycen, Int(align))
 end
 
 function refresh()

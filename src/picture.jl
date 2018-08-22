@@ -20,6 +20,8 @@ Display picture with `picture_id`.
 """
 function setproperty!(obj::NexPicture, property::Symbol, new_val::Integer)
     if property == :picture
-        setNexProperty(NexID(obj), :pic, Int32(new_val))
+        setnexproperty!(NexID(obj), :pic, Int32(new_val))
+    else
+        setfield!(obj, property)
     end
 end

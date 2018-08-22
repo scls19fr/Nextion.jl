@@ -50,7 +50,7 @@ function setproperty!(obj::NexNumber, property::Symbol, new_val)
     # Error
 
     else
-        error("setproperty! error '$property'")    
+        getfield(obj, property)
 
     end
 end

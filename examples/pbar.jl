@@ -12,3 +12,7 @@ nexProgressBar.value = 30
 
 #nexProgressBar.value = 105  # should raise error because value must be in 0-100
 #nexProgressBar.value = -1  # should raise error because value must be in 0-100
+
+sleep(1)
+
+close(nexSerial)

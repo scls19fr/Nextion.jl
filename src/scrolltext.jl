@@ -26,10 +26,10 @@ function setproperty!(obj::NexScrollText, property::Symbol, new_val)
     elseif property == :text
         obj.stringvalued.value = new_val
 
-    # Error
+    # getfield
 
     else
-        error("setproperty! error '$property'")    
+        getfield(obj, property)
 
     end
 
