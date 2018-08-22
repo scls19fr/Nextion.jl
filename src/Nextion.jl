@@ -45,7 +45,7 @@ module Nextion
 
     export Draw
 
-    export NexText, setText
+    export NexText
     export NexPage, show, isshown
 
     export Return, Alignment, Background, Colour, Scroll
@@ -54,13 +54,13 @@ module Nextion
     export NexNumber
 
     export NexScrollText
-    export setAlignment
     export Font
 
     export NexProgressBar
     export NexQRcode
 
     export NexPicture
+    export NexGauge
 
     # package code goes here
     include("hardware.jl")
@@ -79,8 +79,10 @@ module Nextion
     include("qrcode.jl")
     include("picture.jl")
 
-    include("button.jl")
+    include("gauge.jl")
+
 #=
+    include("button.jl")
     include("checkbox.jl")
     include("hotspot.jl")
     include("radio.jl")
@@ -90,7 +92,6 @@ module Nextion
     include("slider.jl")
     include("waveform.jl")
     include("dualstatebutton.jl")
-    include("gauge.jl")
     include("timer.jl")
     include("rtc.jl")
     include("eeprom.jl")

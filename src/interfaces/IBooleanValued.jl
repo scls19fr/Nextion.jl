@@ -36,7 +36,7 @@ Get boolean value from Nextion object `obj`.
 function getproperty(obj::IBooleanValued, property::Symbol)
 
     if property == :value
-        getnexproperty(NexID(obj), :val)
+        Bool(getnexproperty(NexID(obj), :val, Int))
     else
         getfield(obj, property)
     end
