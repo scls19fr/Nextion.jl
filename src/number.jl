@@ -35,12 +35,12 @@ function setproperty!(obj::NexNumber, property::Symbol, new_val)
     # IViewable
 
     if property == :visible
-        setVisible(obj.viewable, new_val)
+        obj.viewable.visible = new_val
 
     # INumericalValued
 
     elseif property == :value
-        setValue(obj.numericalvalued, new_val)
+        obj.numericalvalued.value = new_val
 
     # IFontStyleable
 

@@ -38,7 +38,7 @@ function setproperty!(obj::NexText, property::Symbol, new_val)
     # IViewable
 
     if property == :visible
-        setVisible(obj.viewable, new_val)
+        obj.viewable.visible = new_val
     
     # IStringValued
     
