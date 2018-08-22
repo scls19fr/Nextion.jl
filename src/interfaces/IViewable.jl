@@ -13,20 +13,25 @@ end
 
 
 """
-    setVisible(obj, val)
+    obj.visible = new_val
 
-Display Nextion object `obj` when `val` is `true`.
-Hide it when `val` is `false`.
+Set value from `new_val` to Nextion object `obj`.
 """
-function setVisible(obj::IViewable, val::Bool)
-    nid = NexID(obj)
-    _oid = String(Name(nid))
-    #_oid = String(ComponentID(nid))
-    if val
-        cmd = "vis $_oid,1"
+function setproperty!(obj::IViewable, property::Symbol, new_val)
+
+    if property == :visible
+        nid = NexID(obj)
+        _oid = String(Name(nid))
+        #_oid = String(ComponentID(nid))
+        if new_val
+            cmd = "vis $_oid,1"
+        else
+            cmd = "vis $_oid,0"
+        end
+        nexSerial = NexSerial(nid)
+        send(nexSerial, cmd)
     else
-        cmd = "vis $_oid,0"
+        setfield!(obj, property, new_val)
     end
-    nexSerial = NexSerial(nid)
-    send(nexSerial, cmd)
+
 end

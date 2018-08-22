@@ -13,20 +13,32 @@ end
 
 
 """
-    setValue(obj, val)
+    obj.value = val
 
 Set boolean value from `val` to Nextion object `obj`.
 """
-function setValue(obj::IBooleanValued, val::Bool)
-    error("ToDo")
+function setproperty!(obj::IBooleanValued, property::Symbol, new_val)
+
+    if property == :value
+        setnexproperty!(NexID(obj), :val, Bool(new_val))
+    else
+        setfield!(obj, property, new_val)
+    end
+
 end
 
 
 """
-    getText(obj) -> Bool
+    obj.value
 
 Get boolean value from Nextion object `obj`.
 """
-function getValue(obj::IBooleanValued)::Bool
-    error("ToDo")
+function getproperty(obj::IBooleanValued, property::Symbol)
+
+    if property == :value
+        Bool(getnexproperty(NexID(obj), :val, Int))
+    else
+        getfield(obj, property)
+    end
+
 end

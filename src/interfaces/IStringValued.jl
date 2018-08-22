@@ -12,21 +12,23 @@ struct IStringValued <: AbstractINextion
 end
 
 
-"""
-    setText(obj, val)
+function setproperty!(obj::IStringValued, property::Symbol, new_val)
 
-Set text from string value contained in `val` to Nextion object `obj`.
-"""
-function setText(obj::IStringValued, val::String)
-    setNexProperty(NexID(obj), :txt, val)
+    if property == :value
+        setnexproperty!(NexID(obj), :txt, new_val)
+    else
+        setfield!(obj, property, new_val)
+    end
+
 end
 
 
-"""
-    getText(obj) -> String
+function getproperty(obj::IStringValued, property::Symbol)
 
-Get text from Nextion object `obj`.
-"""
-function getText(obj::IStringValued)::String
-    getNexProperty(NexID(obj), :font, String)
+    if property == :value
+        getnexproperty(NexID(obj), :font, String)
+    else
+        getfield(obj, property)
+    end
+
 end

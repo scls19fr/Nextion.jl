@@ -1,7 +1,7 @@
 """
-    NexRTC(nexSerial, name; pid=pid, cid=cid)
+    NexEEPROM(nexSerial, name; pid=pid, cid=cid)
 
-A Nextion control to manage Real Time Clock (RTC).
+A Nextion control to manage Electrically-erasable programmable read-only memory (EEPROM).
 
 !!! note
 

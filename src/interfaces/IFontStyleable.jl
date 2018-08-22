@@ -21,21 +21,68 @@ struct IFontStyleable <: AbstractINextion
     end
 end
 
-function setFont(obj::IFontStyleable, font::Font)
-    setNexProperty(NexID(obj), :font, font.id)
+
+"""
+    obj.font = new_font
+
+Set value from `new_val` to Nextion object `obj`.
+"""
+function setproperty!(obj::IFontStyleable, property::Symbol, new_val)
+
+    if property == :font
+        font = new_val
+        setnexproperty!(NexID(obj), :font, font.id)
+    else
+        setfield!(obj, property, new_val)
+    end
+
 end
 
-function getFont(obj::IFontStyleable)::Font
-    # Font(getNexProperty(NexID(obj), :font, Int))
+
+"""
+    obj.font
+
+Get `value` property from Nextion object `obj`.
+"""
+function getproperty(obj::IFontStyleable, property::Symbol)
+
+    if property == :font
+        Font(getnexproperty(NexID(obj), :font, Int))
+    elseif property == :alignment
+        AlignmentDirection(NexID(obj))
+    else
+        getfield(obj, property)
+    end
+
 end
 
-function setAlignment(obj::IFontStyleable, align::Alignment.Horizontal.AlignmentHorizontalCode)
-    setNexProperty(NexID(obj), :xcen, Int(align))
+
+"""
+    obj.alignment.[vertical|horizontal] = ...
+
+Set alignment.
+"""
+function setproperty!(obj::AlignmentDirection, property::Symbol, align::Alignment.Horizontal.AlignmentHorizontalCode)
+
+    if property == :horizontal
+        setnexproperty!(NexID(obj), :xcen, Int(align))
+    else
+        setfield!(obj, property, align)
+    end
+
 end
 
-function setAlignment(obj::IFontStyleable, align::Alignment.Vertical.AlignmentVerticalCode)
-    setNexProperty(NexID(obj), :ycen, Int(align))
+
+function setproperty!(obj::AlignmentDirection, property::Symbol, align::Alignment.Vertical.AlignmentVerticalCode)
+
+    if property == :vertical
+        setnexproperty!(NexID(obj), :ycen, Int(align))
+    else
+        setfield!(obj, property, align)
+    end
+
 end
+
 
 function refresh()
 

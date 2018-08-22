@@ -15,13 +15,22 @@ struct NexScrollText <: AbstractNexObject
 end
 
 
-# IStringValued
+function setproperty!(obj::NexScrollText, property::Symbol, new_val)
+    # IViewable
 
-"""
-    setText(obj, val)
+    if  property == :visible
+        obj.viewable.visible = new_val
+    
+    # IStringValued
+    
+    elseif property == :text
+        obj.stringvalued.value = new_val
 
-Set text to string value contained in `val`.
-"""
-function setText(obj::NexScrollText, val::String)
-    setText(obj.stringvalued, val)
+    # getfield
+
+    else
+        getfield(obj, property)
+
+    end
+
 end

@@ -13,20 +13,32 @@ end
 
 
 """
-    setValue(obj, val)
+    obj.value = new_val
 
-Set value from `val` to Nextion object `obj`.
+Set value from `new_val` to Nextion object `obj`.
 """
-function setValue(obj::INumericalValued, val::Integer)
-    setNexProperty(NexID(obj), :val, Int32(val))
+function setproperty!(obj::INumericalValued, property::Symbol, new_val)
+
+    if property == :value
+        setnexproperty!(NexID(obj), :val, Int32(new_val))
+    else
+        setfield!(obj, property, new_val)
+    end
+
 end
 
 
 """
-    getText(obj)
+    obj.value
 
-Get value from Nextion object `obj`.
+Get `value` property from Nextion object `obj`.
 """
-function getValue(obj::INumericalValued)
-    getNexProperty(NexID(obj), :val, Int)
+function getproperty(obj::INumericalValued, property::Symbol)
+
+    if property == :value
+        getnexproperty(NexID(obj), :val, Int)
+    else
+        getfield(obj, property)
+    end
+
 end

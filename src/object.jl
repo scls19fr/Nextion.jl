@@ -84,15 +84,18 @@ function Name(nid::NexID)::Name
 end
 
 """
-    setNexProperty(nid::NexID, property::Symbol, val)
+    setnexproperty!(nid::NexID, property::Symbol, val)
 
 Set property of a Nextion object given by it's NexID
 
 # Example:
-`setNexProperty(NexID("t0"), :txt, "Hello!")` send and execute
+`setnexproperty!(NexID("t0"), :txt, "Hello!")` send and execute
 on the Nextion display `t0.txt="Hello"`
+
+`setnexproperty!(NexID("n0"), :val, 3)` send and execute
+on the Nextion display `n0.val=3`
 """
-function setNexProperty(nid::NexID, property::Symbol, val::String)
+function setnexproperty!(nid::NexID, property::Symbol, val::String)
     _name = String(Name(nid))
     _property = String(property)
     cmd = "$_name.$_property=\"$val\""
@@ -100,12 +103,25 @@ function setNexProperty(nid::NexID, property::Symbol, val::String)
     send(nexSerial, cmd)
 end
 
-function setNexProperty(nid::NexID, property::Symbol, val)
+function setnexproperty!(nid::NexID, property::Symbol, val)
     _name = String(Name(nid))
     _property = String(property)
     cmd = "$_name.$_property=$val"
     nexSerial = NexSerial(nid)
     send(nexSerial, cmd)
+end
+
+"""
+    getnexproperty(nid::NexID, property::Symbol)
+
+Get property of a Nextion object given by it's NexID
+"""
+function getnexproperty(nid::NexID, property::Symbol, ::Type{Int})
+    error("ToDo")
+end
+
+function getnexproperty(nid::NexID, property::Symbol, ::Type{String})
+    error("ToDo")
 end
 
 

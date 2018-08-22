@@ -43,16 +43,10 @@ nexText.visible = true
 sleep(0.5)
 
 
-#println(nexText.alignment)
-
-setAlignment(nexText, Alignment.Horizontal.RIGHT)  # RIGHT CENTRE LEFT
-setAlignment(nexText, Alignment.Vertical.DOWN)  # UP CENTRE DOWN
-# nexText.alignment.horizontal = Alignment.Horizontal.RIGHT
-# nexText.alignment.vertical = Alignment.Vertical.DOWN
+nexText.alignment.horizontal = Alignment.Horizontal.RIGHT
+nexText.alignment.vertical = Alignment.Vertical.DOWN
 
 # Change fontid from 0 to 1
-# setFont(nexText.fontstyleable, Font(1))  # level 0
-#setFont(nexText, Font(1))  # level 1 - removed
 nexText.font = Font(1)
 
 

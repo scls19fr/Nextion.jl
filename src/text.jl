@@ -16,44 +16,65 @@ struct NexText <: AbstractNexObject
     end
 end
 
-# IViewable
+
 """
     obj.visible = val
 
 Display Nextion object `obj` when `val` is `true`.
 Hide it when `val` is `false`.
-"""
-setproperty!(obj::NexText, visible::Symbol, new_val::Bool) = setVisible(obj.viewable, new_val)
 
-# IStringValued
-"""
+
     obj.text = text_value
 
 Set text from string value contained in `text_value` to Nextion object `obj`.
-"""
-setproperty!(obj::NexText, text::Symbol, new_val::String) = setText(obj.stringvalued, new_val)
 
 
-#function getText(obj::NexText)
-#    getText(obj.stringvalued)
-#end
-# ToDo: getproperty
-
-
-# IFontStyleable
-"""
     obj.font = new_font
 
 Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
-"""
-setproperty!(obj::NexText, font::Symbol, new_font::Font) = setFont(obj.fontstyleable, new_font)
 
-function setAlignment(obj::NexText, align)
-    setAlignment(obj.fontstyleable, align)
+"""
+function setproperty!(obj::NexText, property::Symbol, new_val)
+    # IViewable
+
+    if property == :visible
+        obj.viewable.visible = new_val
+    
+    # IStringValued
+    
+    elseif property == :text
+        obj.stringvalued.value = new_val
+
+    # IFontStyleable
+    
+    elseif property == :font
+        obj.fontstyleable.font = new_val
+
+    # setfield!
+
+    else
+        setfield!(obj, property, new_val)
+
+    end
 end
 
-#function getproperty(obj::NexText, alignment::Symbol)
-#end
+
+function getproperty(obj::NexText, property::Symbol)
+    # IStringValued
+    
+    if property == :text
+        obj.stringvalued.text
+
+    # IFontStyleable
+    elseif property == :alignment
+        obj.fontstyleable.alignment
+    
+    # getfield
+
+    else
+        getfield(obj, property)
+    end
+end
 
 
 # IColourable

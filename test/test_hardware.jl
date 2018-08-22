@@ -10,7 +10,6 @@ using Test
             _code = Return.code(0x01)
             @test _code == Return.Code.CMD_FINISHED
             @test string(_code) == "CMD_FINISHED"
-            @test_broken "ToDo Should be fixed!" == 2
         end
         @testset "Return Modes" begin
             @test Integer(Return.Mode.NO_RETURN) == 0x00
