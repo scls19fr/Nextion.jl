@@ -12,14 +12,17 @@ struct IStringValued <: AbstractINextion
 end
 
 
-"""
-    setText(obj, val)
+function setproperty!(obj::IStringValued, property::Symbol, new_val)
 
-Set text from string value contained in `val` to Nextion object `obj`.
-"""
-function setText(obj::IStringValued, val::String)
-    setNexProperty(NexID(obj), :txt, val)
+    if property == :value
+        setNexProperty(NexID(obj), :txt, new_val)
+    else
+        error("setproperty! error '$property'")
+    end
+
 end
+
+
 
 
 """

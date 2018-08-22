@@ -8,6 +8,14 @@ send(nexSerial, "page pg_num")
 
 sleep(1)
 
-#nexNumber.val = 123  # ToDo: shouldn't work (setproperty! should be fixed!)
+nexNumber.value = 1
 
-nexNumber.value = 123
+sleep(1)
+
+nexNumber.value = 2
+
+sleep(1)
+
+nexNumber.value = 3
+
+close(nexSerial)
