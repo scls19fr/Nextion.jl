@@ -11,6 +11,7 @@ makedocs(
         "hardware.md",
         "constants.md",
         "draw.md",
+        "objects.md",
         "controls.md",
         "invisibles.md",
     ]

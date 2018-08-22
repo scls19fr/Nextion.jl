@@ -6,6 +6,9 @@ nexGauge = NexGauge(nexSerial, Name("z0"), cid=ComponentID(3))
 
 send(nexSerial, "page pg_gauge")
 
+nexGauge.backcolor = Colour.WHITE
+nexGauge.forecolor = Colour.RED
+
 #for angle in 30:30:360
 #    sleep(1)
 #    nexGauge.value = angle

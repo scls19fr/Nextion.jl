@@ -18,9 +18,13 @@ end
 
 Display picture with `picture_id`.
 """
-function setproperty!(obj::NexPicture, property::Symbol, new_val::Integer)
+function setproperty!(obj::NexPicture, property::Symbol, new_val)
+
+    # "IPicturable"
     if property == :picture
         setnexproperty!(NexID(obj), :pic, Int32(new_val))
+
+    # setfield!
     else
         setfield!(obj, property)
     end

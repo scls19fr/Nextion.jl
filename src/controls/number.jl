@@ -9,10 +9,11 @@ struct NexNumber <: AbstractNexObject
     viewable::IViewable
     numericalvalued::INumericalValued
     fontstyleable::IFontStyleable
+    colourable::IColourable
 
     function NexNumber(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid), IFontStyleable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid), IFontStyleable(nid), IColourable(nid))
     end
 end
 
@@ -32,34 +33,57 @@ Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
 
 """
 function setproperty!(obj::NexNumber, property::Symbol, new_val)
-    # IViewable
 
+    # IViewable
     if property == :visible
         obj.viewable.visible = new_val
 
     # INumericalValued
-
     elseif property == :value
         obj.numericalvalued.value = new_val
 
     # IFontStyleable
-
     elseif property == :font
         setFont(obj.fontstyleable, new_val)
 
-    # Error
+    # IColourable
+    elseif property == :backcolor
+        obj.colourable.backcolor = new_val
 
+    elseif property == :forecolor
+        obj.colourable.forecolor = new_val
+
+    # getfield
     else
-        getfield(obj, property)
+        setfield!(obj, property, new_val)
 
     end
 end
 
 
-function setAlignment(obj::NexNumber, align)
-    setAlignment(obj.fontstyleable, align)
+function getproperty(obj::NexNumber, property::Symbol)
+
+    # IViewable
+    if property == :visible
+        obj.viewable.visible
+
+    # INumericalValued
+    elseif property == :text
+        obj.numericalvalued.value
+
+    # IFontStyleable
+    elseif property == :alignment
+        obj.fontstyleable.alignment
+
+    # IColourable
+    elseif property == :backcolor
+        obj.colourable.backcolor
+    elseif property == :forecolor
+        obj.colourable.forecolor
+
+    # getfield
+    else
+        getfield(obj, property)
+    
+    end
 end
-
-
-
-# IColourable

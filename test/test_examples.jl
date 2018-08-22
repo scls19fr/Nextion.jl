@@ -76,4 +76,9 @@ portname = "/dev/ttyUSB0"
         @test true
     end
 
+    @testset "gauge" begin
+        include("../examples/gauge.jl")
+        @test true
+    end
+
 end

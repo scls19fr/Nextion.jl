@@ -30,12 +30,10 @@ Set text from string value contained in `text_value` to Nextion object `obj`.
 """
 function setproperty!(obj::NexQRcode, property::Symbol, new_val)
     # IViewable
-
     if  property == :visible
         obj.viewable.visible = new_val
     
     # IStringValued
-
     elseif property == :text
         obj.stringvalued.value = new_val
     elseif property == :textmaxlength
@@ -47,8 +45,10 @@ function setproperty!(obj::NexQRcode, property::Symbol, new_val)
         #    error("Trying to max length to $new_val but it must be in 0-192")
         #end
 
+    # setfield!
     else
         setfield!(obj, property)
+    
     end
 
 end

@@ -1,6 +1,6 @@
 """
 This is an abstract type for each kind
-of ITEAD Nextion display objects
+of ITEAD Nextion display objects.
 """
 abstract type AbstractNexObject end
 
@@ -41,14 +41,21 @@ String(name::Name) = name._s
 """
     NexID(nexSerial, pid, cid, name)
 
-An identifier for a Nextion object
+An identifier for a Nextion object.
+
+It's composed of 4 fields:
+
+- `_nexSerial`: Nextion Serial struct with COM port
+- `_name`: an unique name
+- `_pid`: Page ID
+- `_cid`: Component ID
 """
 struct NexID{T <: AbstractNexSerial}
-    _nexSerial::T  # Nextion Serial struct with COM port
+    _nexSerial::T  
 
-    _name::Name  # An unique name
-    _pid::PageID  # Page ID
-    _cid::ComponentID  # Component ID
+    _name::Name  
+    _pid::PageID
+    _cid::ComponentID
 end
 
 

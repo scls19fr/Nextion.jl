@@ -1,8 +1,3 @@
-struct Font
-    id::UInt8
-end
-Font(id::Number) = Font(UInt8(id))
-
 struct AlignmentDirection
     _nid::NexID
 end

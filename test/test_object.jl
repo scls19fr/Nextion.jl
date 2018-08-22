@@ -1,5 +1,6 @@
 using Nextion
-using Nextion: NexSerialMock, NexID
+using Nextion: NexSerialMock
+using Nextion: NexID, PageID, ComponentID, Name
 
 using Test
 

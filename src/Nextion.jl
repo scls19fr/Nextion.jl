@@ -39,30 +39,58 @@ module Nextion
                     setproperty!, getproperty
     import Sockets: send
 
+    # hardware
     export NexSerial
-    export PageID, ComponentID, Name
-    export init, send
+    #export PageID, ComponentID, Name
+    export init
+    #  Base: close, reset
+    export send  # to avoid WARNING: Base.send is deprecated
 
+    export Name, PageID, ComponentID
+
+    # drawing
     export Draw
 
+    # contants
+    export Return
+    export Alignment, Background,
+        Colour, Scroll, Baudrate, GPIO
+
+    # resources
+    export Font, Picture
+
+    # controls
     export NexText
-    export NexPage, show, isshown
-
-    export Return, Alignment, Background, Colour, Scroll
-    export GPIO
-
+    export NexPage, isshown
+    #  Base: show
     export NexNumber
-
     export NexScrollText
-    export Font
-
     export NexProgressBar
     export NexQRcode
-
     export NexPicture
     export NexGauge
+    export NexButton
+    export NexDualStateButton
+    export NexCheckbox
+    export NexRadio
+    export NexCrop
+    export NexHotspot
+    export NexSlider
+    export NexWaveform
+
+    # invisibles
+    export NexVariable
+    export NexTimer
+    export NexUpload
+
+    # enhanced
+    export NexRTC
+    export NexEEPROM
+    export NexGPIO
 
     # package code goes here
+    include("constants.jl")
+    include("resources.jl")
     include("hardware.jl")
 
     include("Draw/Draw.jl")
@@ -70,30 +98,33 @@ module Nextion
     include("object.jl")
     include("interfaces/interfaces.jl")
 
-    include("gpio.jl")
-    include("text.jl")
-    include("page.jl")
-    include("scrolltext.jl")
-    include("number.jl")
-    include("progressbar.jl")
-    include("qrcode.jl")
-    include("picture.jl")
+    include("controls/text.jl")
+    include("controls/page.jl")
+    include("controls/scrolltext.jl")
+    include("controls/number.jl")
+    include("controls/progressbar.jl")
+    include("controls/qrcode.jl")
+    include("controls/picture.jl")
 
-    include("gauge.jl")
+    include("controls/gauge.jl")
+
+    include("enhanced/gpio.jl")
 
 #=
-    include("button.jl")
-    include("checkbox.jl")
-    include("hotspot.jl")
-    include("radio.jl")
-    include("upload.jl")
-    include("variable.jl")
-    include("crop.jl")
-    include("slider.jl")
-    include("waveform.jl")
-    include("dualstatebutton.jl")
-    include("timer.jl")
-    include("rtc.jl")
-    include("eeprom.jl")
+    include("controls/slider.jl")
+    include("controls/button.jl")
+    include("controls/checkbox.jl")
+    include("controls/radio.jl")
+    include("controls/waveform.jl")
+    include("controls/dualstatebutton.jl")
+    include("controls/crop.jl")
+    include("controls/hotspot.jl")
+
+    include("invisibles/variable.jl")
+    include("invisibles/timer.jl")
+    include("invisibles/upload.jl")
+
+    include("enhanced/rtc.jl")
+    include("enhanced/eeprom.jl")
 =#
 end # module

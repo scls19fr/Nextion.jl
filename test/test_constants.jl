@@ -2,7 +2,7 @@ using Nextion
 using Test
 
 
-@testset "Hardware" begin
+@testset "Constants" begin
     @testset "Return" begin
         @testset "Return Codes" begin
             @test Integer(Return.Code.CMD_FINISHED) == 0x01
@@ -33,6 +33,12 @@ using Test
         @testset "Scroll Direction" begin
             @test Integer(Scroll.Direction.LEFT_TO_RIGHT) == 0
         end
+    end
+
+    @testset "Baudrate" begin
+        @test Baudrate.at(9600) == 9600
+        @test Baudrate.id(2400) == 1  # is it necessary? ToDo
+        @test_throws ErrorException Baudrate.at(9650) == 9600
     end
 
     @testset "GPIO" begin
