@@ -75,11 +75,8 @@ module Nextion
     include("number.jl")
     include("progressbar.jl")
     include("qrcode.jl")
-
-    #=
-    include("config.jl")
-    include("touch.jl")
     include("button.jl")
+#=
     include("checkbox.jl")
     include("hotspot.jl")
     include("radio.jl")
@@ -92,10 +89,7 @@ module Nextion
     include("gauge.jl")
     include("picture.jl")
     include("timer.jl")
-
     include("rtc.jl")
-    include("eeprom.jl")  # Flash?
-
-    =#
-
+    include("eeprom.jl")
+=#
 end # module
