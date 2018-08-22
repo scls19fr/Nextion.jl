@@ -8,6 +8,7 @@ struct NexProgressBar <: AbstractNexObject
 
     viewable::IViewable
     numericalvalued::INumericalValued
+    #colourable::IColourable
 
     function NexProgressBar(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
@@ -39,7 +40,6 @@ function setproperty!(obj::NexProgressBar, property::Symbol, new_val::Integer)
             error("new_val=$new_val but it should be in 0-100")
         end
 
-    # Error
     else
         setfield!(obj, property)
     end
