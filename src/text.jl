@@ -59,21 +59,22 @@ function setproperty!(obj::NexText, property::Symbol, new_val)
 end
 
 
-#function getproperty(obj::NexText, property::Symbol)
-#    # IStringValued
-#    
-#    if property == :text
-#        getText(obj.stringvalued)
-#    end
-#end
+function getproperty(obj::NexText, property::Symbol)
+    # IStringValued
+    
+    if property == :text
+        obj.stringvalued.text
 
+    # IFontStyleable
+    elseif property == :alignment
+        obj.fontstyleable.alignment
+    
+    # getfield
 
-function setAlignment(obj::NexText, align)
-    setAlignment(obj.fontstyleable, align)
+    else
+        getfield(obj, property)
+    end
 end
-
-#function getproperty(obj::NexText, alignment::Symbol)
-#end
 
 
 # IColourable

@@ -48,6 +48,8 @@ function getproperty(obj::IFontStyleable, property::Symbol)
 
     if property == :font
         Font(getnexproperty(NexID(obj), :font, Int))
+    elseif property == :alignment
+        AlignmentDirection(NexID(obj))
     else
         getfield(obj, property)
     end
@@ -55,13 +57,32 @@ function getproperty(obj::IFontStyleable, property::Symbol)
 end
 
 
-function setAlignment(obj::IFontStyleable, align::Alignment.Horizontal.AlignmentHorizontalCode)
-    setnexproperty!(NexID(obj), :xcen, Int(align))
+"""
+    obj.alignment.[vertical|horizontal] = ...
+
+Set alignment.
+"""
+function setproperty!(obj::AlignmentDirection, property::Symbol, align::Alignment.Horizontal.AlignmentHorizontalCode)
+
+    if property == :horizontal
+        setnexproperty!(NexID(obj), :xcen, Int(align))
+    else
+        setfield!(obj, property, align)
+    end
+
 end
 
-function setAlignment(obj::IFontStyleable, align::Alignment.Vertical.AlignmentVerticalCode)
-    setnexproperty!(NexID(obj), :ycen, Int(align))
+
+function setproperty!(obj::AlignmentDirection, property::Symbol, align::Alignment.Vertical.AlignmentVerticalCode)
+
+    if property == :vertical
+        setnexproperty!(NexID(obj), :ycen, Int(align))
+    else
+        setfield!(obj, property, align)
+    end
+
 end
+
 
 function refresh()
 
