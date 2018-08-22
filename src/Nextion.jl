@@ -60,6 +60,8 @@ module Nextion
     export NexProgressBar
     export NexQRcode
 
+    export NexPicture
+
     # package code goes here
     include("hardware.jl")
 
@@ -75,6 +77,8 @@ module Nextion
     include("number.jl")
     include("progressbar.jl")
     include("qrcode.jl")
+    include("picture.jl")
+
     include("button.jl")
 #=
     include("checkbox.jl")
@@ -87,7 +91,6 @@ module Nextion
     include("waveform.jl")
     include("dualstatebutton.jl")
     include("gauge.jl")
-    include("picture.jl")
     include("timer.jl")
     include("rtc.jl")
     include("eeprom.jl")
