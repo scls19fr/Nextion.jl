@@ -91,6 +91,9 @@ Set property of a Nextion object given by it's NexID
 # Example:
 `setNexProperty(NexID("t0"), :txt, "Hello!")` send and execute
 on the Nextion display `t0.txt="Hello"`
+
+`setNexProperty(NexID("n0"), :val, 3)` send and execute
+on the Nextion display `n0.val=3`
 """
 function setNexProperty(nid::NexID, property::Symbol, val::String)
     _name = String(Name(nid))
