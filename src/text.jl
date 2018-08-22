@@ -48,7 +48,7 @@ function setproperty!(obj::NexText, property::Symbol, new_val)
     # IFontStyleable
     
     elseif property == :font
-        setFont(obj.fontstyleable, new_val)
+        obj.fontstyleable.font = new_val
 
     # setfield!
 
