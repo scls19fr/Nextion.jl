@@ -81,4 +81,9 @@ portname = "/dev/ttyUSB0"
         @test true
     end
 
+    @testset "slider" begin
+        include("../examples/slider.jl")
+        @test true
+    end
+
 end

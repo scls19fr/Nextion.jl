@@ -1,4 +1,4 @@
-using Nextion: RangeNumber
+using Nextion: RangeNumber, NoRangeNumber
 using Test
 
 
@@ -16,6 +16,14 @@ using Test
 
     @testset "other construct" begin
         a = RangeNumber{Int64, 1:7}(3)
+        @test a == 3
+
+        @test_throws ErrorException a = RangeNumber{Int64, 1:7}(8)
+    end
+
+    @testset "NoRangeNumber" begin
+        a = NoRangeNumber(3)
+        @test a == 3
     end
 
 end

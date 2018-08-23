@@ -8,12 +8,12 @@ struct NexGauge <: AbstractNexObject
 
     viewable::IViewable
     numericalvalued::INumericalValued
-    colourable::IColourable    
+    colourable::IColourable
     touchable::ITouchable
 
     function NexGauge(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, RangeNumber{UInt16, 0:360}), IColourable(nid), ITouchable(nid))
     end
 end
 
@@ -44,10 +44,11 @@ function setproperty!(obj::NexGauge, property::Symbol, new_val)
 
     # INumericalValued
     elseif property == :value
-        if new_val >= 0 && new_val <= 360
+        if obj.numericalvalued.rn === nothing
             obj.numericalvalued.value = new_val
         else
-            error("new_val=$new_val but it should be in 0-360")
+            new_val = Number(obj.numericalvalued.rn(new_val))
+            obj.numericalvalued.value = new_val
         end
 
     # IColourable

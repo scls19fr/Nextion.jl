@@ -14,7 +14,7 @@ struct NexNumber <: AbstractNexObject
 
     function NexNumber(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, nothing), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
     end
 end
 
@@ -41,7 +41,12 @@ function setproperty!(obj::NexNumber, property::Symbol, new_val)
 
     # INumericalValued
     elseif property == :value
-        obj.numericalvalued.value = new_val
+        if obj.numericalvalued.rn === nothing
+            obj.numericalvalued.value = new_val
+        else
+            new_val = Number(obj.numericalvalued.rn(new_val))
+            obj.numericalvalued.value = new_val
+        end
 
     # IFontStyleable
     elseif property == :font

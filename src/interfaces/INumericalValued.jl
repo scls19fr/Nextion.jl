@@ -8,7 +8,7 @@ struct INumericalValued <: AbstractINextion
 
     rn  # RangeNumber type
 
-    function INumericalValued(nid::NexID, rn=nothing)
+    function INumericalValued(nid::NexID, rn)
         new(nid, rn)
     end
 end
