@@ -32,7 +32,6 @@ struct NexGPIO <: AbstractNexObject
 
     function NexGPIO(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        error("ToDo")
         new(nid)
     end
 end

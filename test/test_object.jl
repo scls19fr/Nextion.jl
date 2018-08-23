@@ -21,6 +21,10 @@ using Test
         nexSerial = NexSerialMock()
         name, pid, cid = Name("txt_name"), PageID(1), ComponentID(2)
         nid = NexID(nexSerial, name, pid, cid)
+        #println(nid)
+        #@test Name(nid) == "txt_name"
+        #@test PageID(nid) == 1
+        #@test ComponentID(nid) == 2
     end
 
     @testset "NexText" begin
@@ -31,4 +35,59 @@ using Test
         @test PageID(nid) == PageID(2)
         @test ComponentID(nid) == ComponentID(3)
     end
+
+    @testset "Controls constructors" begin
+        controls = [
+          NexButton,
+          NexCheckbox,
+          NexCrop,
+          NexDualStateButton,
+          NexGauge,
+          NexHotspot,
+          NexNumber,
+          NexPage,
+          NexPicture,
+          NexProgressBar,
+          NexQRcode,
+          NexRadio,
+          NexScrollText,
+          NexSlider,
+          NexText,
+          NexWaveform
+        ]
+        nexSerial = NexSerialMock()
+        for ctl in controls
+            ctl(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(0))
+        end
+        @test 1==1
+    end
+
+    @testset "Invisible constructors" begin
+        controls = [
+          NexTimer,
+          NexUpload,
+          NexVariable
+        ]
+        nexSerial = NexSerialMock()
+        for ctl in controls
+            ctl(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(0))
+        end
+        @test 1==1
+    end
+
+    @testset "Enhanced constructors" begin
+        controls = [
+          NexEEPROM,
+          NexGPIO,
+          NexRTC
+        ]
+        nexSerial = NexSerialMock()
+        for ctl in controls
+            ctl(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(0))
+        end
+        @test 1==1
+    end    
+
 end
+
+
