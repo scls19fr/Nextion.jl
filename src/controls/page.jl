@@ -2,6 +2,8 @@
     NexPage(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Page UI control.
+
+A `NexPage` is the main element of a Nextion UI. It's where controls are put on.
 """
 struct NexPage <: AbstractNexObject
     _nid::NexID

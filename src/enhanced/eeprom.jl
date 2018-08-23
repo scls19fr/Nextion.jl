@@ -7,10 +7,10 @@ A Nextion control to manage Electrically-erasable programmable read-only memory 
 
     Only for enhanced model.
 """
-struct NexRTC <: AbstractNexObject
+struct NexEEPROM <: AbstractNexObject
     _nid::NexID
 
-    function NexRTC(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
+    function NexEEPROM(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
         error("ToDo")
         new(nid)

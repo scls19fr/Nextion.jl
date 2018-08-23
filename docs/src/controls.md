@@ -4,14 +4,15 @@
 
 ### Overview
 
-A `NexPage` is the main element of a Nextion UI. It's where controls are put on.
+```@docs
+NexPage
+```
 
 ### API
 
 #### Public
 
 ```@docs
-NexPage
 Base.show(::NexPage)
 isshown(::NexPage)
 ```
@@ -20,17 +21,17 @@ isshown(::NexPage)
 
 ### Overview
 
-A `NexText` is a Nextion UI control to display text on a page
+```@docs
+NexText
+```
 
 ### API
 
 #### Public
 
 ```@docs
-NexText
-setproperty!(::NexText, ::Symbol, ::Font)
-setproperty!(::NexText, ::Symbol, ::Bool)
-setproperty!(::NexText, ::Symbol, ::String)
+Base.setproperty!(::NexText, ::Symbol, new_val)
+Base.getproperty(::NexText, ::Symbol)
 ```
 
 ## Button
@@ -117,18 +118,6 @@ NexHotspot
 NexNumber
 ```
 
-## Page
-
-### Overview
-
-### API
-
-#### Public
-
-```@docs
-NexPage
-```
-
 ## Picture
 
 ### Overview
@@ -184,7 +173,7 @@ NexRadio
 
 #### Public
 ```@docs
-NexScrolltext
+NexScrollText
 Scroll.Direction
 ```
 

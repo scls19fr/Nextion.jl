@@ -40,7 +40,7 @@ Here is a list of objects and their description:
 | `NexProgressBar`     |
 | `NexQRcode`          |
 | `NexRadio`           |
-| `NexScrolltext`      |
+| `NexScrollText`      |
 | `NexSlider`          |
 | `NexText`            |
 | `NexWaveform`        |
@@ -81,7 +81,7 @@ Here is a list of objects and their description:
 | `NexProgressBar`     |      ✓      |                  |                 |         ✓
 | `NexQRcode`          |      ✓      |                  |                 |
 | `NexRadio`           |      ✓      |         ✓        |                 |
-| `NexScrolltext`      |      ✓      |                  |        ✓        |
+| `NexScrollText`      |      ✓      |                  |        ✓        |
 | `NexSlider`          |      ✓      |                  |                 |         ✓
 | `NexText`            |      ✓      |                  |        ✓        |
 | `NexWaveform`        |      ✓      |                  |                 |
@@ -101,7 +101,7 @@ Here is a list of objects and their description:
 | `NexProgressBar`     |                  |       ✓       |               |       ✓      |
 | `NexQRcode`          |                  |               |               |              |
 | `NexRadio`           |                  |       ✓       |               |       ✓      |
-| `NexScrolltext`      |         ✓        |       ✓       |               |       ✓      |
+| `NexScrollText`      |         ✓        |       ✓       |               |       ✓      |
 | `NexSlider`          |                  |       ✓       |               |       ✓      |
 | `NexText`            |         ✓        |       ✓       |               |       ✓      |
 | `NexWaveform`        |                  |       ✓       |               |       ✓      |

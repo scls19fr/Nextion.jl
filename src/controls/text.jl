@@ -2,6 +2,8 @@
     NexText(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Text UI control.
+
+A `NexText` is a Nextion UI control to display text on a page.
 """
 struct NexText <: AbstractNexObject
     _nid::NexID
@@ -63,7 +65,15 @@ function setproperty!(obj::NexText, property::Symbol, new_val)
     end
 end
 
+"""
+    obj.visible
 
+Return True if `obj` is visible; return False otherwise.
+
+    obj.text
+
+Return `text`` property value.
+"""
 function getproperty(obj::NexText, property::Symbol)
 
     # IViewable

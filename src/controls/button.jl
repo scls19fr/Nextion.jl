@@ -3,7 +3,7 @@
 
 A Nextion Button UI control.
 """
-struct NexCheckbox <: AbstractNexObject
+struct NexButton <: AbstractNexObject
     _nid::NexID
 
     function NexButton(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
