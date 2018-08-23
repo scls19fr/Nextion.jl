@@ -12,10 +12,11 @@ struct NexText <: AbstractNexObject
     stringvalued::IStringValued
     fontstyleable::IFontStyleable
     colourable::IColourable
+    touchable::ITouchable
 
     function NexText(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), IStringValued(nid), IFontStyleable(nid), IColourable(nid))
+        new(nid, IViewable(nid), IStringValued(nid), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
     end
 end
 

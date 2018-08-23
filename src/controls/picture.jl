@@ -6,9 +6,12 @@ A Nextion Picture UI control.
 struct NexPicture <: AbstractNexObject
     _nid::NexID
 
+    viewable::IViewable
+    picturable::IPicturable
+
     function NexPicture(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid)
+        new(nid, IViewable(nid), IPicturable(nid))
     end
 end
 

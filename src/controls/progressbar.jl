@@ -9,10 +9,11 @@ struct NexProgressBar <: AbstractNexObject
     viewable::IViewable
     numericalvalued::INumericalValued
     colourable::IColourable
+    touchable::ITouchable
 
     function NexProgressBar(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid))
+        new(nid, IViewable(nid), INumericalValued(nid), IColourable(nid), ITouchable(nid))
     end
 end
 

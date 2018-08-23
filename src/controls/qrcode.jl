@@ -8,7 +8,6 @@ struct NexQRcode <: AbstractNexObject
 
     viewable::IViewable
     stringvalued::IStringValued
-    #colourable::IColourable
 
     function NexQRcode(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)

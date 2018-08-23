@@ -6,9 +6,13 @@ A Nextion Checkbox UI control.
 struct NexCheckbox <: AbstractNexObject
     _nid::NexID
 
+    viewable::IViewable
+    booleanvalued::IBooleanValued
+    colourable::IColourable
+    touchable::ITouchable
+
     function NexCheckbox(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        error("ToDo")
-        new(nid)
+        new(nid, IViewable(nid), IBooleanValued(nid), IColourable(nid), ITouchable(nid))
     end
 end

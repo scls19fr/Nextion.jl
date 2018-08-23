@@ -78,7 +78,7 @@ Here is a list of objects and their description:
 | `NexPage`            |             |                  |                 |
 | `NexPicture`         |      ✓      |                  |                 |
 | `NexProgressBar`     |      ✓      |                  |                 |         ✓
-| `NexQRcode`          |      ✓      |                  |                 |
+| `NexQRcode`          |      ✓      |                  |        ✓        |
 | `NexRadio`           |      ✓      |         ✓        |                 |
 | `NexScrollText`      |      ✓      |                  |        ✓        |
 | `NexSlider`          |      ✓      |                  |                 |         ✓
