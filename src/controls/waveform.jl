@@ -4,7 +4,15 @@
 A Nextion Waveform UI control.
 
 On Nextion side, it have the following properties:
-- bco
+- bco/picc/pic
+- gdc
+- gdw
+- gdh 
+- pco0
+- pco1
+- pco2
+- pco3
+
 """
 struct NexWaveform <: AbstractNexObject
     _nid::NexID

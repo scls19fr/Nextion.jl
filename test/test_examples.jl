@@ -86,4 +86,10 @@ portname = "/dev/ttyUSB0"
         @test true
     end
 
+    #@testset "waveform" begin
+    #    include("../examples/waveform.jl")
+        #waveform(10)  # to avoid looping infinitely
+    #    @test true
+    #end
+
 end
