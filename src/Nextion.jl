@@ -37,6 +37,7 @@ Reference documents for implementation:
 module Nextion
     import Base: show, read, write, close, reset,
                     setproperty!, getproperty,
+                    getindex, push!
                     Int32
     import Sockets: send
 
