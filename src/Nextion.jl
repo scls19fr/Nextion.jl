@@ -36,7 +36,8 @@ Reference documents for implementation:
 """
 module Nextion
     import Base: show, read, write, close, reset,
-                    setproperty!, getproperty
+                    setproperty!, getproperty,
+                    Int32
     import Sockets: send
 
     # hardware
@@ -96,6 +97,7 @@ module Nextion
     include("Draw/Draw.jl")
 
     include("object.jl")
+    include("range_number.jl")
     include("interfaces/interfaces.jl")
 
     include("controls/button.jl")

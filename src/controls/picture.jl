@@ -25,7 +25,7 @@ function setproperty!(obj::NexPicture, property::Symbol, new_val)
 
     # "IPicturable"
     if property == :picture
-        setnexproperty!(NexID(obj), :pic, Int32(new_val))
+        obj.picturable.picture = new_val
 
     # setfield!
     else

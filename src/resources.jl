@@ -11,3 +11,4 @@ struct Picture <: AbstractNexResource
     id::UInt8
 end
 Picture(id::Number) = Picture(UInt8(id))
+# Int32(pic::Picture) = Int32(pic.id)

@@ -26,6 +26,7 @@ function setproperty!(obj::IFontStyleable, property::Symbol, new_val)
 
     if property == :font
         font = new_val
+        @assert typeof(font) <: Font "'$font' must be a 'Font'"
         setnexproperty!(NexID(obj), :font, font.id)
     else
         setfield!(obj, property, new_val)

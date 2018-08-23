@@ -13,7 +13,8 @@ struct NexProgressBar <: AbstractNexObject
 
     function NexProgressBar(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, RangeNumber{Int64, 0:100}), IColourable(nid), ITouchable(nid))
+        #new(nid, IViewable(nid), INumericalValued(nid), IColourable(nid), ITouchable(nid))
     end
 end
 
@@ -28,7 +29,7 @@ Hide it when `val` is `false`.
 
 Set numerical value from `value` to Nextion object `obj`.
 """
-function setproperty!(obj::NexProgressBar, property::Symbol, new_val::Integer)
+function setproperty!(obj::NexProgressBar, property::Symbol, new_val)
 
     # IViewable
     if property == :visible
@@ -36,7 +37,9 @@ function setproperty!(obj::NexProgressBar, property::Symbol, new_val::Integer)
 
     # INumericalValued
     elseif property == :value
-        if new_val >= 0 && new_val <= 100
+        #new_val = obj.numericalvalued.rn(new_val).v
+        #obj.numericalvalued.value = new_val
+        if new_val >= 0 && new_val <= 100       
             obj.numericalvalued.value = new_val
         else
             error("new_val=$new_val but it should be in 0-100")

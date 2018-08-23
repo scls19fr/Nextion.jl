@@ -6,8 +6,10 @@ An interface for numerical valued widgets.
 struct INumericalValued <: AbstractINextion
     _nid::NexID
 
-    function INumericalValued(nid::NexID)
-        new(nid)
+    rn  # RangeNumber type
+
+    function INumericalValued(nid::NexID, rn)
+        new(nid, rn)
     end
 end
 
