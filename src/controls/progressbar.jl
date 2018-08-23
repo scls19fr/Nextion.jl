@@ -37,13 +37,13 @@ function setproperty!(obj::NexProgressBar, property::Symbol, new_val)
 
     # INumericalValued
     elseif property == :value
-        #new_val = obj.numericalvalued.rn(new_val).v
+        new_val = obj.numericalvalued.rn(new_val) #.v
         #obj.numericalvalued.value = new_val
-        if new_val >= 0 && new_val <= 100       
-            obj.numericalvalued.value = new_val
-        else
-            error("new_val=$new_val but it should be in 0-100")
-        end
+        #if new_val >= 0 && new_val <= 100       
+        #    obj.numericalvalued.value = new_val
+        #else
+        #    error("new_val=$new_val but it should be in 0-100")
+        #end
 
     # setfield!
     else

@@ -12,3 +12,13 @@ struct RangeNumber{T<:Number, R}
         return new{typeof(v), r}(v)
     end
 end
+
+RangeNumber{T, R}(n) where {T, R} = RangeNumber(n, R)
+
+Base.:+(a::RangeNumber{T, R}, b::RangeNumber{T, R}) where {T, R} = RangeNumber(a.v+b.v, R)
+Base.:+(a::Number, b::RangeNumber{T, R}) where {T, R} = RangeNumber(a+b.v, R)
+Base.:+(a::RangeNumber{T, R}, b::Number) where {T, R} = RangeNumber(a.v+b, R)
+
+Base.:(==)(a::RangeNumber{T, R}, b::RangeNumber{T, R}) where {T, R} = a.v == b.v
+Base.:(==)(a::Number, b::RangeNumber{T, R}) where {T, R} = a == b.v
+Base.:(==)(a::RangeNumber{T, R}, b::Number) where {T, R} = a.v == b
