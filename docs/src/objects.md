@@ -17,7 +17,6 @@ Theses objects can have the following interfaces:
 | `IColourable`      | `backcolor` | Color?   | Can get/set backcolor
 |                    | `forecolor` | ...      | Can get/set forecolor
 | `IPicturable`      | `picture`   | Picture  | Can get/set a picture (using pic_id)
-| `ICallbackable`    | ...         | ...      | Can set a callback which is called when event occurs
 | `ITouchable`       | ...         | ...      | Can be touched
 
 
@@ -87,8 +86,8 @@ Here is a list of objects and their description:
 | `NexWaveform`        |      ✓      |                  |                 |
 
 
-| object               | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` | `ICallbackable` |
-| :---                 |       :---:      |     :---:     |     :---:     |     :---:    |      :---:      |
+| object               | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` |
+| :---                 |       :---:      |     :---:     |     :---:     |     :---:    |
 | `NexButton`          |         ✓        |       ✓       |               |       ✓      |
 | `NexCheckbox`        |                  |       ✓       |               |       ✓      |
 | `NexCrop`            |                  |               |       ✓       |       ✓      |
@@ -115,8 +114,8 @@ Here is a list of objects and their description:
 | `NexVariable` |             |                  |                 |
 
 
-| object        | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` | `ICallbackable` |
-| :---          |       :---:      |     :---:     |     :---:     |    :---:     |      :---:      |
+| object        | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` |
+| :---          |       :---:      |     :---:     |     :---:     |    :---:     |
 | `NexTimer`    |                  |               |               |              |
 | `NexUpload`   |                  |               |               |              |
 | `NexVariable` |                  |               |               |              |
@@ -130,8 +129,8 @@ Here is a list of objects and their description:
 | `NexGPIO`     |             |                  |                 |
 | `NexRTC`      |             |                  |                 |
 
-| object        | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` | `ICallbackable` |
-| :---          |       :---:      |     :---:     |     :---:     |    :---:     |      :---:      |
+| object        | `IFontStyleable` | `IColourable` | `IPicturable` | `ITouchable` |
+| :---          |       :---:      |     :---:     |     :---:     |    :---:     |
 | `NexEEPROM`   |                  |               |               |              |
 | `NexGPIO`     |                  |               |               |              |
 | `NexRTC`      |                  |               |               |              |
