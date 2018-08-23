@@ -7,7 +7,6 @@ On Nextion side, it have the following properties:
 - bco
 - pco
 - txt
-
 """
 struct NexQRcode <: AbstractNexObject
     _nid::NexID
