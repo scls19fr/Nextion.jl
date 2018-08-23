@@ -4,6 +4,16 @@
 A Nextion Text UI control.
 
 A `NexText` is a Nextion UI control to display text on a page.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- font
+- xcen
+- ycen
+- pw
+- txt
+- isbr
 """
 struct NexText <: AbstractNexObject
     _nid::NexID

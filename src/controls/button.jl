@@ -2,6 +2,17 @@
     NexButton(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Button UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- bco2
+- pco
+- pco2
+- font
+- xcen
+- ycen
+- txt
+- isbr
 """
 struct NexButton <: AbstractNexObject
     _nid::NexID

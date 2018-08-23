@@ -2,6 +2,9 @@
     NexWaveform(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Waveform UI control.
+
+On Nextion side, it have the following properties:
+- bco
 """
 struct NexWaveform <: AbstractNexObject
     _nid::NexID

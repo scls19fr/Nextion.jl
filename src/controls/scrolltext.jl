@@ -2,6 +2,19 @@
     NexScrollText(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Scrolling Text UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- font
+- xcen
+- ycen
+- dir
+- tim
+- dis
+- txt
+- en
+- isbr
 """
 struct NexScrollText <: AbstractNexObject
     _nid::NexID

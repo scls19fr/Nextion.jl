@@ -2,6 +2,15 @@
     NexSlider(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Slider UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- wid
+- hig
+- val
+- maxval
+- minval
 """
 struct NexSlider <: AbstractNexObject
     _nid::NexID

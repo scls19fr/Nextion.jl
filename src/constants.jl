@@ -181,3 +181,15 @@ module Baudrate
         findall(x -> x == value, SUPPORTED)[1]
     end
 end
+
+
+"""
+Module storing Format for numeric values
+"""
+module Format
+    @enum FormatCode::UInt8 begin
+        Decimal = 0
+        Currency
+        Hex
+    end
+end

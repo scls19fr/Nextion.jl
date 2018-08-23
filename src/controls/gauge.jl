@@ -2,6 +2,12 @@
     NexGauge(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Gauge UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- val
+- wid
+- pco
 """
 struct NexGauge <: AbstractNexObject
     _nid::NexID

@@ -2,6 +2,11 @@
     NexCheckbox(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Checkbox UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- val
 """
 struct NexCheckbox <: AbstractNexObject
     _nid::NexID

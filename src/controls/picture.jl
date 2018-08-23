@@ -2,6 +2,9 @@
     NexPicture(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Picture UI control.
+
+On Nextion side, it have the following properties:
+- pic
 """
 struct NexPicture <: AbstractNexObject
     _nid::NexID

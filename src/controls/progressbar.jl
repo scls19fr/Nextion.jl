@@ -2,6 +2,11 @@
     NexProgressBar(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Progress Bar UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- val
 """
 struct NexProgressBar <: AbstractNexObject
     _nid::NexID

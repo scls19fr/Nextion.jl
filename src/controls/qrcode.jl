@@ -2,6 +2,12 @@
     NexQRcode(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion QR code UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- txt
+
 """
 struct NexQRcode <: AbstractNexObject
     _nid::NexID

@@ -2,6 +2,11 @@
     NexRadio(nexSerial, name; pid=pid, cid=cid)
 
 A Nextion Radio UI control.
+
+On Nextion side, it have the following properties:
+- bco
+- pco
+- val
 """
 struct NexRadio <: AbstractNexObject
     _nid::NexID

@@ -32,6 +32,16 @@ Set numerical value from `value` to Nextion object `obj`.
 
 Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
 
+On Nextion side, it have the following properties:
+- bco
+- pco
+- font
+- xcen
+- ycen
+- val
+- length
+- format
+- isbr
 """
 function setproperty!(obj::NexNumber, property::Symbol, new_val)
 
