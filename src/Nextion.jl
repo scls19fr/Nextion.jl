@@ -95,7 +95,7 @@ module Nextion
     include("resources.jl")
     include("hardware.jl")
 
-    include("Draw/Draw.jl")
+    include("draw/draw.jl")
 
     include("object.jl")
     include("range_number.jl")
