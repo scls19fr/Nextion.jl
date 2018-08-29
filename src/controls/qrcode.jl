@@ -24,15 +24,15 @@ end
 function setproperty!(obj::NexQRcode, property::Symbol, new_val)
     if property == :textmaxlength
         error("text max length property can only be set using Nextion Editor")
+    else
+        _setcommonproperty!(obj, property, new_val)
     end
-
-    _setcommonproperty!(obj, property, new_val)
 end
 
 function getproperty(obj::NexQRcode, property::Symbol, new_val)
     if property == :textmaxlength
         error("text max length property can only be set using Nextion Editor")
+    else
+        _getcommonproperty(obj, property)
     end
-
-    _getcommonproperty(obj, property)
 end
