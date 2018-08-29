@@ -10,17 +10,17 @@ send(nexSerial, "page pg_slider")
 
 sleep(1)
 
+#nexSlider.cursor.color = Colour.GRAY
+nexSlider.forecolor = Colour.GRAY
 nexSlider.value = 30
 
 sleep(1)
 
-send(nexSerial, "h0.wid=10")
-#nexSlider.cursor.width = 10
+nexSlider.cursor.width = 10
 
 sleep(1)
 
-send(nexSerial, "h0.hig=10")
-# nexSlider.cursor.height = 10
+nexSlider.cursor.height = 13
 
 sleep(1)
 

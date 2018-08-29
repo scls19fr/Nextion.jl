@@ -9,8 +9,8 @@ send(nexSerial, "page pg_gauge")
 nexGauge.backcolor = Colour.WHITE
 nexGauge.forecolor = Colour.RED
 
-nexGauge.width = 3  # 0-5
-# nexGauge.pointer.width = 3  # 0-5
+#nexGauge.width = 3  # 0-5
+nexGauge.pointer.width = 3  # 0-5
 
 #for angle in 30:30:360
 #    sleep(1)

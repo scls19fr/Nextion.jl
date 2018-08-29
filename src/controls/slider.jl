@@ -1,3 +1,15 @@
+struct NexSliderCursor <: AbstractNexObject
+    _nid::NexID
+
+    widthable::IWidthable
+    heightable::IHeightable
+end
+
+function setproperty!(obj::NexSliderCursor, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
 """
     NexSlider(nexSerial, name; pid=pid, cid=cid)
 
@@ -33,5 +45,10 @@ end
 
 
 function getproperty(obj::NexSlider, property::Symbol)
-    _getcommonproperty(obj, property)
+    if property == :cursor
+        nid = NexID(obj)
+        NexSliderCursor(nid, IWidthable(nid), IHeightable(nid))
+    else
+        _getcommonproperty(obj, property)
+    end
 end

@@ -156,6 +156,10 @@ function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
     elseif property == :width && :widthable in ab
         obj.widthable.width = new_val
 
+    # "IHeigthable"
+    elseif property == :height && :heightable in ab
+        obj.heightable.height = new_val
+
     # setfield!
     else
         setfield!(obj, property, new_val)
@@ -214,6 +218,10 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
     # "IWidthable"
     elseif property == :width && :widthable in ab
         obj.widthable.width
+
+    # "IHeigthable"
+    elseif property == :height && :heightable in ab
+        obj.heightable.height
     
     # getfield
     else

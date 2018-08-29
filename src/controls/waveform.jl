@@ -1,10 +1,10 @@
-struct NexWaveformChannels
+struct NexWaveformChannels <: AbstractNexObject
     _nid::NexID
 end
 getindex(channels::Nextion.NexWaveformChannels, ch::Integer) = NexWaveformChannel(channels._nid, ch)
 
 
-struct NexWaveformChannel
+struct NexWaveformChannel <: AbstractNexObject
     _nid::NexID
     _chid::UInt8  # channel id
 end
@@ -28,7 +28,7 @@ function setproperty!(obj::NexWaveformChannel, property::Symbol, new_val)
     end
 end
 
-struct NexWaveformGrid
+struct NexWaveformGrid <: AbstractNexObject
     _nid::NexID
 end
 
