@@ -125,13 +125,17 @@ function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
         obj.stringvalued.value = new_val
 
     # INumericalValued
-    elseif property == :value
+    elseif property == :value && :numericalvalued in ab
         if obj.numericalvalued.rn === nothing
             obj.numericalvalued.value = new_val
         else
             new_val = Number(obj.numericalvalued.rn(new_val))
             obj.numericalvalued.value = new_val
         end
+
+    # IBooleanValued
+    elseif property == :value && :booleanvalued in ab
+        obj.booleanvalued.value = new_val
 
     # IFontStyleable
     elseif property == :font && :fontstyleable in ab
@@ -147,6 +151,10 @@ function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
     # "IPicturable"
     elseif property == :picture && :picturable in ab
         obj.picturable.picture = new_val
+
+    # "IWidthable"
+    elseif property == :width && :widthable in ab
+        obj.widthable.width = new_val
 
     # setfield!
     else
@@ -185,6 +193,10 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
     elseif property == :value && :numericalvalued in ab
         obj.numericalvalued.value
 
+    # IBooleanValued
+    elseif property == :value && :booleanvalued in ab
+        obj.booleanvalued.value
+
     # IFontStyleable
     elseif property == :alignment && :fontstyleable in ab
         obj.fontstyleable.alignment
@@ -199,6 +211,10 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
     elseif property == :picture && :picturable in ab
         obj.picturable.picture
 
+    # "IWidthable"
+    elseif property == :width && :widthable in ab
+        obj.widthable.width
+    
     # getfield
     else
         getfield(obj, property)
@@ -227,6 +243,16 @@ function setnexproperty!(nid::NexID, property::Symbol, val::String)
     nexSerial = NexSerial(nid)
     send(nexSerial, cmd)
 end
+
+function setnexproperty!(nid::NexID, property::Symbol, val::Bool)
+    if val
+        val = 1
+    else
+        val = 0
+    end
+    setnexproperty!(nid, property, val)
+end
+
 
 function setnexproperty!(nid::NexID, property::Symbol, val)
     _name = String(Name(nid))

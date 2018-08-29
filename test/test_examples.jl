@@ -92,4 +92,9 @@ portname = "/dev/ttyUSB0"
     #    @test true
     #end
 
+    @testset "checkbox" begin
+        include("../examples/checkbox.jl")
+        @test true
+    end
+
 end

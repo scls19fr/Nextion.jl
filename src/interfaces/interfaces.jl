@@ -14,6 +14,7 @@ include("IFontStyleable.jl")
 include("IPicturable.jl")
 # include("ICallback.jl")
 include("ITouchable.jl")
+include("IWidthable.jl")
 
 
 function abilities(obj::AbstractNexObject)
