@@ -14,3 +14,14 @@ include("IFontStyleable.jl")
 include("IPicturable.jl")
 # include("ICallback.jl")
 include("ITouchable.jl")
+
+
+function abilities(obj::AbstractNexObject)
+    ab = Symbol[]
+    for field in fieldnames(typeof(obj))
+        if typeof(getfield(obj, field)) <: AbstractINextion
+            push!(ab, field)
+        end
+    end
+    ab
+end
