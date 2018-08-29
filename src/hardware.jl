@@ -121,6 +121,20 @@ function reset(nexSerial::NexSerial)
 end
 
 
+"""
+    checkcommandcomplete(nexSerial)
+
+Return true if command returned succesfully
+"""
+function checkcommandcomplete(nexSerial::NexSerial)
+    #ret = false
+    error("ToDo")
+    timeout = 10
+    port = nexSerial._serial.ref
+    returned_bytes = sp_blocking_read(port, 4, timeout)
+    returned_bytes
+end
+
 
 struct Backlight
     value::Unsigned
