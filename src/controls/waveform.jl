@@ -17,6 +17,16 @@ function push!(channel::NexWaveformChannel, value::UInt8)
     send(nexSerial, "add $cid,$chid,$value")
 end
 
+function setproperty!(obj::NexWaveformChannel, property::Symbol, new_val)
+    if property == :color
+        chid = obj._chid
+        nid = obj._nid
+        prop = Symbol("pco$chid")
+        setnexproperty!(nid, prop, new_val)
+    else
+        setfield!(obj, property, new_val)
+    end
+end
 
 struct NexWaveformGrid
     _nid::NexID
@@ -55,7 +65,7 @@ On Nextion side, it have the following properties:
 - bco/picc/pic
 - gdc
 - gdw
-- gdh 
+- gdh
 - pco0
 - pco1
 - pco2

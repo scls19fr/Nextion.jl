@@ -22,6 +22,7 @@ using Test
 nexSerial = NexSerial("/dev/ttyUSB0")
 nexWaveform = NexWaveform(nexSerial, Name("s0"), cid=ComponentID(2))
 
+send(nexSerial, "cls WHITE")
 send(nexSerial, "page pg_waveform")
 
 nexWaveform.grid.width = 20
@@ -36,8 +37,8 @@ sleep(1)
 #@test nb_channels == 4
 nb_channels = 4
 
-#channel = nexWaveform.channels[0]
-#channel.color = Colour.WHITE
+channel = nexWaveform.channels[2] # 0, 1, 2, 3
+channel.color = Colour.RED
 
 #push!(channel, UInt8(123))  # values in 0:255 (add)
 #push!(channel, UInt8[123, 123, 100])  # (addt)
