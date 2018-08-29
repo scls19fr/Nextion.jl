@@ -2,26 +2,33 @@ using Nextion
 using Test
 
 
-nexSerial = NexSerial("/dev/ttyUSB0")
+@testset "slider" begin
 
-nexSlider = NexSlider(nexSerial, Name("h0"), cid=ComponentID(4))
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-send(nexSerial, "page pg_slider")
+    nexSlider = NexSlider(nexSerial, Name("h0"), cid=ComponentID(4))
 
-sleep(1)
+    send(nexSerial, "page pg_slider")
+    sleep(0.1)
 
-#nexSlider.cursor.color = Colour.GRAY
-nexSlider.forecolor = Colour.GRAY
-nexSlider.value = 30
+    nexSlider.value = 43691  # 0-65535
 
-sleep(1)
+    sleep(1)
 
-nexSlider.cursor.width = 10
+    #nexSlider.cursor.color = Colour.GRAY
+    nexSlider.forecolor = Colour.GRAY
 
-sleep(1)
+    sleep(1)
 
-nexSlider.cursor.height = 13
+    nexSlider.cursor.width = 10
 
-sleep(1)
+    sleep(1)
 
-close(nexSerial)
+    nexSlider.cursor.height = 13
+
+    sleep(1)
+
+    close(nexSerial)
+    @test true
+
+end

@@ -2,27 +2,33 @@ using Nextion
 using Test
 
 
-nexSerial = NexSerial("/dev/ttyUSB0")
+@testset "number" begin
 
-nexNumber = NexNumber(nexSerial, Name("n0"), cid=ComponentID(1))
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-send(nexSerial, "page pg_num")
+    nexNumber = NexNumber(nexSerial, Name("n0"), cid=ComponentID(1))
 
-sleep(1)
+    send(nexSerial, "page pg_num")
 
-nexNumber.value = 1
-#@test nexNumber.value == 1  # ToDo get value
+    sleep(1)
 
-sleep(1)
+    nexNumber.value = 1
+    #@test nexNumber.value == 1  # ToDo get value
 
-nexNumber.value = 2
-nexNumber.backcolor = Colour.RED
-nexNumber.forecolor = Colour.WHITE
+    sleep(1)
 
-sleep(1)
+    nexNumber.value = 2
+    nexNumber.backcolor = Colour.RED
+    nexNumber.forecolor = Colour.WHITE
 
-nexNumber.value = 3
-nexNumber.backcolor = Colour.WHITE
-nexNumber.forecolor = Colour.RED
+    sleep(1)
 
-close(nexSerial)
+    nexNumber.value = 3
+    nexNumber.backcolor = Colour.WHITE
+    nexNumber.forecolor = Colour.RED
+
+    close(nexSerial)
+
+    @test true
+
+end

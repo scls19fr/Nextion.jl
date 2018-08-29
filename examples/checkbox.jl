@@ -2,26 +2,32 @@ using Nextion
 using Test
 
 
-nexSerial = NexSerial("/dev/ttyUSB0")
+@testset "checkbox" begin
 
-nexCheckbox0 = NexCheckbox(nexSerial, Name("c0"), cid=ComponentID(4))
-nexCheckbox1 = NexCheckbox(nexSerial, Name("c1"), cid=ComponentID(5))
-nexCheckbox2 = NexCheckbox(nexSerial, Name("c2"), cid=ComponentID(7))
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-send(nexSerial, "page pg_dsb_chk_rad")
+    nexCheckbox0 = NexCheckbox(nexSerial, Name("c0"), cid=ComponentID(4))
+    nexCheckbox1 = NexCheckbox(nexSerial, Name("c1"), cid=ComponentID(5))
+    nexCheckbox2 = NexCheckbox(nexSerial, Name("c2"), cid=ComponentID(7))
 
-nexCheckbox0.value = false
-nexCheckbox1.value = false
-nexCheckbox2.value = false
+    send(nexSerial, "page pg_dsb_chk_rad")
 
-sleep(1)
+    nexCheckbox0.value = false
+    nexCheckbox1.value = false
+    nexCheckbox2.value = false
 
-nexCheckbox0.value = true
+    sleep(1)
 
-sleep(1)
+    nexCheckbox0.value = true
 
-nexCheckbox0.value = false
+    sleep(1)
 
-sleep(1)
+    nexCheckbox0.value = false
 
-close(nexSerial)
+    sleep(1)
+
+    close(nexSerial)
+
+    @test true
+
+end

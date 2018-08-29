@@ -1,15 +1,22 @@
 using Nextion
+using Test
 
-nexSerial = NexSerial("/dev/ttyUSB0")
 
-nexPicture = NexPicture(nexSerial, Name("p0"), cid=ComponentID(1))
+@testset "picture" begin
 
-send(nexSerial, "page pg_pic")
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-for i in 1:4
-    sleep(1)
-    #nexPicture.picture = i
-    nexPicture.picture = Picture(i)
+    nexPicture = NexPicture(nexSerial, Name("p0"), cid=ComponentID(1))
+
+    send(nexSerial, "page pg_pic")
+
+    for i in 1:4
+        sleep(1)
+        #nexPicture.picture = i
+        nexPicture.picture = Picture(i)
+    end
+
+    close(nexSerial)
+    @test true
+
 end
-
-close(nexSerial)

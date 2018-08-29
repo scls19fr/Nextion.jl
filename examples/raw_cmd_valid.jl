@@ -1,30 +1,38 @@
 using Nextion
+using Test
 
-nexSerial = NexSerial("/dev/ttyUSB0")
 
-send(nexSerial, "page 0")
+@testset "raw_cmd_valid" begin
 
-send(nexSerial, "cls WHITE")
-# send(nexSerial, "rest")
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-sleep(0.5)
+    send(nexSerial, "page 0")
 
-send(nexSerial, "t0.txt=\"Hello\"")
+    send(nexSerial, "cls WHITE")
+    # send(nexSerial, "rest")
 
-sleep(0.5)
+    sleep(0.5)
 
-send(nexSerial, "t0.txt=\"1\"")
+    send(nexSerial, "t0.txt=\"Hello\"")
 
-sleep(0.5)
+    sleep(0.5)
 
-send(nexSerial, "t0.txt=\"2\"")
+    send(nexSerial, "t0.txt=\"1\"")
 
-sleep(0.5)
+    sleep(0.5)
 
-send(nexSerial, "t0.txt=\"3\"")
+    send(nexSerial, "t0.txt=\"2\"")
 
-sleep(0.5)
+    sleep(0.5)
 
-send(nexSerial, "t0.txt=\"Bye\"")
+    send(nexSerial, "t0.txt=\"3\"")
 
-close(nexSerial)
+    sleep(0.5)
+
+    send(nexSerial, "t0.txt=\"Bye\"")
+
+    close(nexSerial)
+    
+    @test true
+
+end

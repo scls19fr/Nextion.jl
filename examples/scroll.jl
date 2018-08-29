@@ -1,11 +1,18 @@
 using Nextion
+using Test
 
-nexSerial = NexSerial("/dev/ttyUSB0")
 
-nexPage = NexPage(nexSerial, Name("pg_scroll"), pid=PageID(6))
-show(nexPage)
+@testset "scroll" begin
 
-nexScrollText = NexScrollText(nexSerial, Name("g0"), pid=PageID(1))
-nexScrollText.text = "Hello Nextion!"
+    nexSerial = NexSerial("/dev/ttyUSB0")
 
-close(nexSerial)
+    nexPage = NexPage(nexSerial, Name("pg_scroll"), pid=PageID(6))
+    show(nexPage)
+
+    nexScrollText = NexScrollText(nexSerial, Name("g0"), pid=PageID(1))
+    nexScrollText.text = "Hello Nextion!"
+
+    close(nexSerial)
+    @test true
+
+end
