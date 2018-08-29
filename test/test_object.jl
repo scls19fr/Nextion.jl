@@ -88,6 +88,14 @@ using Test
         @test 1==1
     end    
 
+    @testset "Backlight" begin
+        @test_throws ErrorException Backlight(105)
+        @test_throws ErrorException Backlight(-10)
+        @test_throws ErrorException Backlight(50.3)
+        bl = Backlight(30)
+        @test bl.value == 30
+    end
+
 end
 
 

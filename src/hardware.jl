@@ -119,3 +119,48 @@ Reset Nextion device.
 function reset(nexSerial::NexSerial)
     send(nexSerial, "rest")
 end
+
+
+
+struct Backlight
+    value::Unsigned
+    persist::Bool
+
+    function Backlight(value, persist=false)
+        r = 0:100
+        if !(value in r)
+            error("Backlight value must be in $r")
+        end
+        new(value, persist)
+    end
+end
+
+
+"""
+    nexSerial.backlight = Backlight(100)  # Backlight(100, true)  # for persistance
+
+Set backlight.
+"""
+function setproperty!(nexSerial::NexSerial, property::Symbol, new_val::Backlight)  # caution! new_val type
+    if property == :backlight
+        val = new_val.value
+        persist = new_val.persist
+        if persist
+            send(nexSerial, "dims=$val")
+        else
+            send(nexSerial, "dim=$val")
+        end
+    else
+        setfield!(obj, property, new_val)
+    end
+end
+
+#function getproperty(nexSerial::NexSerial, property::Symbol)
+#    if property == :backlight
+#        send(nexSerial, "get dim")
+#        val = receivenumber()
+#        val
+#    else
+#        setfield!(obj, property, new_val)
+#    end
+#end

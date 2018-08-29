@@ -11,6 +11,7 @@ using Test
 
     nexScrollText = NexScrollText(nexSerial, Name("g0"), pid=PageID(1))
     nexScrollText.text = "Hello Nextion!"
+    sleep(10)
 
     close(nexSerial)
     @test true

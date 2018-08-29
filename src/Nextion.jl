@@ -90,6 +90,9 @@ module Nextion
     export NexGPIO
     export NexRTC
 
+    # more
+    export Backlight
+
     # package code goes here
     include("constants.jl")
     include("resources.jl")
