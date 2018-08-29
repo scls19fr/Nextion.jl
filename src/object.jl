@@ -90,6 +90,95 @@ function Name(nid::NexID)::Name
     nid._name
 end
 
+
+"""
+    obj.visible = val
+
+Display Nextion object `obj` when `val` is `true`.
+Hide it when `val` is `false`.
+
+
+    obj.text = text_value
+
+Set text from string value contained in `text_value` to Nextion object `obj`.
+
+
+    obj.font = new_font
+
+Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
+
+"""
+function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
+
+    ab = abilities(obj)
+
+    # IViewable
+    if property == :visible && :viewable in ab
+        obj.viewable.visible = new_val
+    
+    # IStringValued
+    elseif property == :text && :stringvalued in ab
+        obj.stringvalued.value = new_val
+
+    # IFontStyleable
+    elseif property == :font && :fontstyleable in ab
+        obj.fontstyleable.font = new_val
+
+    # IColourable
+    elseif property == :backcolor && :colourable in ab
+        obj.colourable.backcolor = new_val
+    
+    elseif property == :forecolor && :colourable in ab
+        obj.colourable.forecolor = new_val
+
+    # setfield!
+    else
+        setfield!(obj, property, new_val)
+
+    end
+end
+
+
+
+"""
+    obj.visible
+
+Return True if `obj` is visible; return False otherwise.
+
+    obj.text
+
+Return `text`` property value.
+"""
+function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
+    ab = abilities(obj)
+
+    # IViewable
+    if property == :visible && :viewable in ab
+        obj.viewable.visible
+
+    # IStringValued
+    elseif property == :text && :stringvalued in ab
+        obj.stringvalued.text
+
+    # IFontStyleable
+    elseif property == :alignment && :fontstyleable in ab
+        obj.fontstyleable.alignment
+
+    # IColourable
+    elseif property == :backcolor && :colourable in ab
+        obj.colourable.backcolor
+    elseif property == :forecolor && :colourable in ab
+        obj.colourable.forecolor
+
+    # getfield
+    else
+        getfield(obj, property)
+    
+    end
+end
+
+
+
 """
     setnexproperty!(nid::NexID, property::Symbol, val)
 
