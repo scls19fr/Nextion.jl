@@ -27,17 +27,13 @@ portname = "/dev/ttyUSB0"
         @test true
     end
 
-    @testset "Execute incorrect commands" begin
-        nexSerial = NexSerial(portname)
-        cmd = "pageEEE 0"
-        _code = send(nexSerial, cmd)
-        println(_code)
-        close(nexSerial)
+    @testset "raw_cmd_valid" begin
+        include("../examples/raw_cmd_valid.jl")
         @test true
     end
 
-    @testset "raw_cmd" begin
-        include("../examples/raw_cmd.jl")
+    @testset "raw_cmd_invalid" begin
+        include("../examples/raw_cmd_valid.jl")
         @test true
     end
 

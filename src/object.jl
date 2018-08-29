@@ -191,7 +191,7 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
 
     # IStringValued
     elseif property == :text && :stringvalued in ab
-        obj.stringvalued.text
+        obj.stringvalued.value
 
     # INumericalValued
     elseif property == :value && :numericalvalued in ab

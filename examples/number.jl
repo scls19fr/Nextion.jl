@@ -1,4 +1,6 @@
 using Nextion
+using Test
+
 
 nexSerial = NexSerial("/dev/ttyUSB0")
 
@@ -9,6 +11,7 @@ send(nexSerial, "page pg_num")
 sleep(1)
 
 nexNumber.value = 1
+#@test nexNumber.value == 1  # ToDo get value
 
 sleep(1)
 
