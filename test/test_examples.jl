@@ -97,4 +97,9 @@ portname = "/dev/ttyUSB0"
         @test true
     end
 
+    @testset "radio" begin
+        include("../examples/radio.jl")
+        @test true
+    end
+
 end
