@@ -28,30 +28,10 @@ end
 
 
 function setproperty!(obj::NexSlider, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
 
-    # IViewable
-    if property == :visible
-        obj.viewable.visible = new_val
 
-    # INumericalValued
-    elseif property == :value
-        if obj.numericalvalued.rn === nothing
-            obj.numericalvalued.value = new_val
-        else
-            new_val = Number(obj.numericalvalued.rn(new_val))
-            obj.numericalvalued.value = new_val
-        end
-
-    # IColourable
-    elseif property == :backcolor
-        obj.colourable.backcolor = new_val
-
-    elseif property == :forecolor
-        obj.colourable.forecolor = new_val
-
-    # setfield!
-    else
-        setfield!(obj, property)
-    
-    end
+function getproperty(obj::NexSlider, property::Symbol)
+    _getcommonproperty(obj, property)
 end

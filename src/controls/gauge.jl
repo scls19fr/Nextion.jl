@@ -24,73 +24,11 @@ struct NexGauge <: AbstractNexObject
 end
 
 
-"""
-    obj.visible = val
-
-Display Nextion object `obj` when `val` is `true`.
-Hide it when `val` is `false`.
-
-    obj.value = value
-
-Set numerical value from `value` to Nextion object `obj`.
-
-    obj.backcolor = color
-
-Set backcolor
-
-    obj.forecolor = color
-
-Set forecolor
-"""
 function setproperty!(obj::NexGauge, property::Symbol, new_val)
-
-    # IViewable
-    if property == :visible
-        obj.viewable.visible = new_val
-
-    # INumericalValued
-    elseif property == :value
-        if obj.numericalvalued.rn === nothing
-            obj.numericalvalued.value = new_val
-        else
-            new_val = Number(obj.numericalvalued.rn(new_val))
-            obj.numericalvalued.value = new_val
-        end
-
-    # IColourable
-    elseif property == :backcolor
-        obj.colourable.backcolor = new_val
-
-    elseif property == :forecolor
-        obj.colourable.forecolor = new_val
-
-    # setfield!
-    else
-        setfield!(obj, property)
-    
-    end
+    _setcommonproperty!(obj, property, new_val)
 end
 
 
 function getproperty(obj::NexGauge, property::Symbol)
-
-    # IViewable
-    if property == :visible
-        obj.viewable.visible
-
-    # INumericalValued
-    elseif property == :value
-        obj.stringvalued.value
-
-    # IColourable
-    elseif property == :backcolor
-        obj.colourable.backcolor
-    elseif property == :forecolor
-        obj.colourable.forecolor
-
-    # getfield
-    else
-        getfield(obj, property)
-    
-    end
+    _getcommonproperty(obj, property)
 end

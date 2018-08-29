@@ -27,3 +27,13 @@ struct NexDualStateButton <: AbstractNexObject
         new(nid, IViewable(nid), IBooleanValued(nid), IColourable(nid), ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexDualStateButton, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexDualStateButton, property::Symbol)
+    _getcommonproperty(obj, property)
+end

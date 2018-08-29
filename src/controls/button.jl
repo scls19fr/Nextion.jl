@@ -28,3 +28,13 @@ struct NexButton <: AbstractNexObject
         new(nid, IViewable(nid), IStringValued(nid), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexButton, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexButton, property::Symbol)
+    _getcommonproperty(obj, property)
+end

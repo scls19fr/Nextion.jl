@@ -103,6 +103,10 @@ Hide it when `val` is `false`.
 Set text from string value contained in `text_value` to Nextion object `obj`.
 
 
+    obj.value = value
+
+Set numerical (or boolean) value from `value` to Nextion object `obj`.
+
     obj.font = new_font
 
 Set font from `Font` struct contained in `new_font` to Nextion object `obj`.
@@ -120,6 +124,15 @@ function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
     elseif property == :text && :stringvalued in ab
         obj.stringvalued.value = new_val
 
+    # INumericalValued
+    elseif property == :value
+        if obj.numericalvalued.rn === nothing
+            obj.numericalvalued.value = new_val
+        else
+            new_val = Number(obj.numericalvalued.rn(new_val))
+            obj.numericalvalued.value = new_val
+        end
+
     # IFontStyleable
     elseif property == :font && :fontstyleable in ab
         obj.fontstyleable.font = new_val
@@ -130,6 +143,10 @@ function _setcommonproperty!(obj::AbstractNexObject, property::Symbol, new_val)
     
     elseif property == :forecolor && :colourable in ab
         obj.colourable.forecolor = new_val
+
+    # "IPicturable"
+    elseif property == :picture && :picturable in ab
+        obj.picturable.picture = new_val
 
     # setfield!
     else
@@ -148,6 +165,10 @@ Return True if `obj` is visible; return False otherwise.
     obj.text
 
 Return `text`` property value.
+
+    obj.value
+
+Return `value`` property (numerical valued or boolean valued).
 """
 function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
     ab = abilities(obj)
@@ -160,6 +181,10 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
     elseif property == :text && :stringvalued in ab
         obj.stringvalued.text
 
+    # INumericalValued
+    elseif property == :value && :numericalvalued in ab
+        obj.numericalvalued.value
+
     # IFontStyleable
     elseif property == :alignment && :fontstyleable in ab
         obj.fontstyleable.alignment
@@ -169,6 +194,10 @@ function _getcommonproperty(obj::AbstractNexObject, property::Symbol)
         obj.colourable.backcolor
     elseif property == :forecolor && :colourable in ab
         obj.colourable.forecolor
+
+    # "IPicturable"
+    elseif property == :picture && :picturable in ab
+        obj.picturable.picture
 
     # getfield
     else

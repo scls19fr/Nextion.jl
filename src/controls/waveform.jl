@@ -46,13 +46,12 @@ struct NexWaveform <: AbstractNexObject
 end
 
 
+
+
 function getproperty(obj::NexWaveform, property::Symbol)
     if property == :channels
         NexWaveformChannels(NexID(obj))
-
-    # getfield
     else
-        getfield(obj, property)
-    
+        _getcommonproperty(obj, property)   
     end
 end

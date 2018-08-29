@@ -33,19 +33,10 @@ end
 
 
 function setproperty!(obj::NexScrollText, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
 
-    # IViewable
-    if property == :visible
-        obj.viewable.visible = new_val
-    
-    # IStringValued
-    elseif property == :text
-        obj.stringvalued.value = new_val
 
-    # getfield
-    else
-        getfield(obj, property)
-
-    end
-
+function getproperty(obj::NexScrollText, property::Symbol)
+    _getcommonproperty(obj, property)
 end

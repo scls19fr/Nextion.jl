@@ -24,34 +24,11 @@ struct NexProgressBar <: AbstractNexObject
 end
 
 
-"""
-    obj.visible = val
-
-Display Nextion object `obj` when `val` is `true`.
-Hide it when `val` is `false`.
-
-    obj.value = value
-
-Set numerical value from `value` to Nextion object `obj`.
-"""
 function setproperty!(obj::NexProgressBar, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
 
-    # IViewable
-    if property == :visible
-        obj.viewable.visible = new_val
 
-    # INumericalValued
-    elseif property == :value
-        if obj.numericalvalued.rn === nothing
-            obj.numericalvalued.value = new_val
-        else
-            new_val = Number(obj.numericalvalued.rn(new_val))
-            obj.numericalvalued.value = new_val
-        end
-
-    # setfield!
-    else
-        setfield!(obj, property)
-    
-    end
+function getproperty(obj::NexProgressBar, property::Symbol)
+    _getcommonproperty(obj, property)
 end

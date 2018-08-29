@@ -21,38 +21,18 @@ struct NexQRcode <: AbstractNexObject
 end
 
 
-"""
-    obj.visible = val
-
-Display Nextion object `obj` when `val` is `true`.
-Hide it when `val` is `false`.
-
-
-    obj.text = text_value
-
-Set text from string value contained in `text_value` to Nextion object `obj`.
-"""
 function setproperty!(obj::NexQRcode, property::Symbol, new_val)
-    # IViewable
-    if  property == :visible
-        obj.viewable.visible = new_val
-    
-    # IStringValued
-    elseif property == :text
-        obj.stringvalued.value = new_val
-    elseif property == :textmaxlength
+    if property == :textmaxlength
         error("text max length property can only be set using Nextion Editor")
-        #nid = NexID(obj)
-        #if new_val >= 0 && new_val <= 192
-        #    setNexProperty(nid, :txt_maxl, Int32(new_val))
-        #else
-        #    error("Trying to max length to $new_val but it must be in 0-192")
-        #end
-
-    # setfield!
-    else
-        setfield!(obj, property)
-    
     end
 
+    _setcommonproperty!(obj, property, new_val)
+end
+
+function getproperty(obj::NexQRcode, property::Symbol, new_val)
+    if property == :textmaxlength
+        error("text max length property can only be set using Nextion Editor")
+    end
+
+    _getcommonproperty(obj, property)
 end

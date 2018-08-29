@@ -21,3 +21,13 @@ struct NexRadio <: AbstractNexObject
         new(nid, IViewable(nid), IBooleanValued(nid), IColourable(nid), ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexRadio, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexRadio, property::Symbol)
+    _getcommonproperty(obj, property)
+end

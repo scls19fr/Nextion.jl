@@ -18,20 +18,11 @@ struct NexPicture <: AbstractNexObject
     end
 end
 
-
-"""
-    obj.picture = picture_id
-
-Display picture with `picture_id`.
-"""
 function setproperty!(obj::NexPicture, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
 
-    # "IPicturable"
-    if property == :picture
-        obj.picturable.picture = new_val
 
-    # setfield!
-    else
-        setfield!(obj, property)
-    end
+function getproperty(obj::NexPicture, property::Symbol)
+    _getcommonproperty(obj, property)
 end

@@ -15,3 +15,13 @@ struct NexCrop <: AbstractNexObject
         new(nid, IViewable(nid), IPicturable(nid), ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexCrop, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexCrop, property::Symbol)
+    _getcommonproperty(obj, property)
+end

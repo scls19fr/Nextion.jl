@@ -13,3 +13,13 @@ struct NexHotspot <: AbstractNexObject
         new(nid, ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexHotspot, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexHotspot, property::Symbol)
+    _getcommonproperty(obj, property)
+end

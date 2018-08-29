@@ -21,3 +21,13 @@ struct NexCheckbox <: AbstractNexObject
         new(nid, IViewable(nid), IBooleanValued(nid), IColourable(nid), ITouchable(nid))
     end
 end
+
+
+function setproperty!(obj::NexCheckbox, property::Symbol, new_val)
+    _setcommonproperty!(obj, property, new_val)
+end
+
+
+function getproperty(obj::NexCheckbox, property::Symbol)
+    _getcommonproperty(obj, property)
+end
