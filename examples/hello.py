@@ -4,7 +4,7 @@ import serial
 
 def _write_end_of_command(ser):
     for i in range(3):
-        ser.write(chr(255))
+        ser.write(chr(0xff))
 
 def _execute_command(ser, cmd):
     print(cmd)
@@ -19,6 +19,7 @@ def main():
     _write_end_of_command(ser)
     time.sleep(2)
     _execute_command(ser, "t0.txt=\"Hello\"")
+
     time.sleep(2)
     _execute_command(ser, "sendme")
     while(True):
