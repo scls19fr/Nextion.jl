@@ -24,10 +24,9 @@ nexWaveform = NexWaveform(nexSerial, Name("s0"), cid=ComponentID(2))
 
 send(nexSerial, "page pg_waveform")
 
-#nexWaveform.grid.width = 10
-#nexWaveform.grid.height = 10
-#nexWaveform.grid.color = Colour.BLUE
-#send(nexSerial, "cls 65535")
+nexWaveform.grid.width = 20
+nexWaveform.grid.height = 20
+nexWaveform.grid.color = Colour.GRAY
 
 sleep(1)
 

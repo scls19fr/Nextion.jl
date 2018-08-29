@@ -3,6 +3,7 @@ struct NexWaveformChannels
 end
 getindex(channels::Nextion.NexWaveformChannels, ch::Integer) = NexWaveformChannel(channels._nid, ch)
 
+
 struct NexWaveformChannel
     _nid::NexID
     _chid::UInt8  # channel id
@@ -15,6 +16,35 @@ function push!(channel::NexWaveformChannel, value::UInt8)
     chid = channel._chid
     send(nexSerial, "add $cid,$chid,$value")
 end
+
+
+struct NexWaveformGrid
+    _nid::NexID
+end
+
+function setproperty!(obj::NexWaveformGrid, property::Symbol, new_val)
+    if property in (:width, :height, :color)
+        nid = obj._nid
+        if property == :width
+            setnexproperty!(nid, :gdw, new_val)
+        elseif property == :height
+            setnexproperty!(nid, :gdh, new_val)
+        else
+            setnexproperty!(nid, :gdc, new_val)
+        end
+    else
+        setfield!(obj, property, new_val)
+    end
+end
+
+function getproperty(obj::NexWaveformGrid, property::Symbol)
+    if property in (:width, :height)
+        getnexproperty(obj._nid, property)
+    else
+        getfield(obj, property)
+    end
+end
+
 
 """
     NexWaveform(nexSerial, name; pid=pid, cid=cid)
@@ -46,11 +76,13 @@ struct NexWaveform <: AbstractNexObject
 end
 
 
-
-
 function getproperty(obj::NexWaveform, property::Symbol)
     if property == :channels
-        NexWaveformChannels(NexID(obj))
+        nid = NexID(obj)
+        NexWaveformChannels(nid)
+    elseif property == :grid
+        nid = NexID(obj)
+        NexWaveformGrid(nid)
     else
         _getcommonproperty(obj, property)   
     end
