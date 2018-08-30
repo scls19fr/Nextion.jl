@@ -1,7 +1,6 @@
 using Nextion
-#using Nextion: v_uint8_eoc
-using Nextion.Event
-using Nextion: TouchEvent, CurrentPageIDHeadEvent, PositionHeadEvent, SleepPositionHeadEvent, StringHeadEvent, NumberHeadEvent
+using Nextion.Event: TouchEvent, CurrentPageIDHeadEvent, PositionHeadEvent, SleepPositionHeadEvent, StringHeadEvent, NumberHeadEvent
+using Nextion.Event.Touch
 using Test
 
 
@@ -10,10 +9,10 @@ using Test
     @testset "TouchEvent" begin
 
         @testset "Constants" begin
-            @test Integer(Event.Touch.Press) == 0x01
-            @test Integer(Event.Touch.Release) == 0x00
-            @test Event.Touch.code(0x01) == Event.Touch.Press
-            @test Event.Touch.code(0x00) == Event.Touch.Release
+            @test Integer(Touch.Press) == 0x01
+            @test Integer(Touch.Release) == 0x00
+            @test Touch.code(0x01) == Touch.Press
+            @test Touch.code(0x00) == Touch.Release
         end
 
         @testset "Event" begin
@@ -22,7 +21,7 @@ using Test
             @test evt.code == Return.Code.EVENT_TOUCH_HEAD
             @test evt.pid == PageID(0x00)
             @test evt.cid == ComponentID(0x02)
-            @test evt.tevts == Event.Touch.Press  # touch event state
+            @test evt.tevts == Touch.Press  # touch event state
         end
     end
 
@@ -40,7 +39,7 @@ using Test
         @test evt.code == Return.Code.EVENT_POSITION_HEAD
         @test evt.x == UInt16(122)
         @test evt.y == UInt16(30)
-        @test evt.tevts == Event.Touch.Press
+        @test evt.tevts == Touch.Press
     end
 
 
@@ -50,7 +49,7 @@ using Test
         @test evt.code == Return.Code.EVENT_SLEEP_POSITION_HEAD
         @test evt.x == UInt16(122)
         @test evt.y == UInt16(30)
-        @test evt.tevts == Event.Touch.Press
+        @test evt.tevts == Touch.Press
     end
 
 
