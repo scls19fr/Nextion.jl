@@ -15,16 +15,8 @@ module Return
         Return code enum
         """
         @enum ReturnCode::UInt8 begin
-            CMD_FINISHED   = 0x01
-            EVENT_LAUNCHED = 0x88
-            EVENT_UPGRADED = 0x89
-            EVENT_TOUCH_HEAD = 0x65
-            EVENT_POSITION_HEAD = 0x67
-            EVENT_SLEEP_POSITION_HEAD = 0x68
-            CURRENT_PAGE_ID_HEAD      = 0x66
-            STRING_HEAD               = 0x70
-            NUMBER_HEAD               = 0x71
             INVALID_CMD          = 0x00
+            CMD_FINISHED         = 0x01
             INVALID_COMPONENT_ID = 0x02
             INVALID_PAGE_ID      = 0x03
             INVALID_PICTURE_ID   = 0x04
@@ -32,6 +24,24 @@ module Return
             INVALID_BAUD         = 0x11
             INVALID_VARIABLE     = 0x1A
             INVALID_OPERATION    = 0x1B
+            INVALID_ASSIGN       = 0x1C
+            INVALID_EEPROM       = 0x1D
+            INVALID_PARAMETER_QUANTITY = 0x1E
+            INVALID_IO                 = 0x1F
+            INVALID_ESC_CHAR           = 0x20
+            INVALID_VAR_NAME_TOO_LONG  = 0x23
+            EVENT_TOUCH_HEAD           = 0x65
+            CURRENT_PAGE_ID_HEAD       = 0x66
+            EVENT_POSITION_HEAD        = 0x67
+            EVENT_SLEEP_POSITION_HEAD  = 0x68
+            STRING_HEAD                = 0x70
+            NUMBER_HEAD                = 0x71
+            EVENT_ENTER_SLEEP_MODE     = 0x86
+            EVENT_ENTER_WAKE_UP_MODE   = 0x87
+            EVENT_LAUNCHED             = 0x88
+            EVENT_UPGRADED             = 0x89
+            EVENT_DATA_TR_FINISHED     = 0xFD
+            EVENT_DATA_TR_READY        = 0xFE
         end
     end
 
