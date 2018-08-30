@@ -6,6 +6,12 @@ abstract type AbstractNexSerial end
 
 const DEFAULT_BAUDRATE = 9600
 
+
+v_uint8_eoc = [0xff, 0xff, 0xff]  # Array{UInt8,1}
+# v_char_eoc = Char.([0xff, 0xff, 0xff])  # Array{Char,1} ['ÿ', 'ÿ', 'ÿ']
+s_eoc = String(copy(v_uint8_eoc))  # "\xff\xff\xff"
+
+
 """
     NexSerial(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
 
@@ -36,16 +42,6 @@ function NexSerialMock(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
     NexSerialMock()
 end
 
-"""
-    _write_end_of_command(ser)
-
-Write end of command (3 times `0xff`) to serial `ser`
-"""
-function _write_end_of_command(ser::LibSerialPort.SerialPort)
-    for i in 0:2
-        write(ser, 0xff)
-    end
-end
 
 """
     init(nexSerial)
@@ -74,6 +70,68 @@ function send(nexSerial::NexSerial, cmd::String)
     r
 end
 
+
+"""
+    _format_command(cmd)
+
+
+Add \xff\xff\xff at the end of String
+
+# Usage
+
+```
+ julia> _format_command("sendme")
+"sendme\xff\xff\xff"
+
+julia> transcode(UInt8, _format_command("sendme"))
+9-element Base.CodeUnits{UInt8,String}:
+ 0x73
+ 0x65
+ 0x6e
+ 0x64
+ 0x6d
+ 0x65
+ 0xff
+ 0xff
+ 0xff
+ ```
+
+"""
+function _format_command(cmd)
+    cmd * s_eoc
+end
+
+"""
+See https://github.com/andrewadare/LibSerialPort.jl/issues/23
+https://github.com/andrewadare/LibSerialPort.jl/issues/24
+"""
+function my_readuntil(sp::SerialPort, delim::AbstractString, timeout_ms::Real)
+    return String(take!(readuntil(sp, Vector{Char}(delim), timeout_ms)))
+ end
+ 
+function my_readuntil(sp::SerialPort, delim::Vector{T}, timeout_ms::Real) where {T}
+    start_time = time_ns()
+    out = Vector{T}()
+    lastchars = T[0 for i=1:length(delim)]
+    while !eof(sp)
+        if (time_ns() - start_time)/1e6 > timeout_ms
+            break
+        end
+        if bytesavailable(sp) > 0
+            c = read(sp, T)
+            push!(out, c)
+            lastchars = circshift(lastchars,-1)
+            lastchars[end] = c
+            if lastchars == delim
+                break
+            end
+        end
+    end
+    return out
+end
+ 
+
+
 """
     write(nexSerial, cmd)
 
@@ -83,8 +141,8 @@ defined by `nexSerial`.
 function write(nexSerial::NexSerial, cmd::String)
     ser = nexSerial._serial
     @info "write '$cmd' to $ser"
+    cmd = _format_command(cmd)
     write(ser, cmd)
-    _write_end_of_command(ser)
 end
 
 
