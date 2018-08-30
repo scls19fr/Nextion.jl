@@ -214,5 +214,8 @@ module Event
             Press = 0x01
             Release = 0x00
         end
+        function code(val::UInt8)
+            TouchEventCode(val)
+        end    
     end
 end

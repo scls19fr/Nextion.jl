@@ -97,6 +97,7 @@ module Nextion
     include("constants.jl")
     include("resources.jl")
     include("hardware.jl")
+    include("events.jl")
 
     include("draw/draw.jl")
 

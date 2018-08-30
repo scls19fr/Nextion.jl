@@ -15,3 +15,8 @@ Colour
 Alignment.Horizontal
 Alignment.Vertical
 ```
+
+### Private
+```@docs
+Event.Touch
+```
