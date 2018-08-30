@@ -38,7 +38,7 @@ module Nextion
     import Base: show, read, write, close, reset,
                     setproperty!, getproperty,
                     getindex, push!
-                    Int32
+                    Int32, UInt16, length
     import Sockets: send
 
     # hardware
@@ -97,12 +97,12 @@ module Nextion
     include("constants.jl")
     include("resources.jl")
     include("hardware.jl")
-    include("events.jl")
 
     include("draw/draw.jl")
 
     include("object.jl")
     include("range_number.jl")
+    include("events.jl")
     include("interfaces/interfaces.jl")
 
     include("controls/button.jl")
