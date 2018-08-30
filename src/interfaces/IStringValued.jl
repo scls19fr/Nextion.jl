@@ -26,7 +26,7 @@ end
 function getproperty(obj::IStringValued, property::Symbol)
 
     if property == :value
-        getnexproperty(NexID(obj), :font, String)
+        getnexproperty(NexID(obj), :txt, String)
     else
         getfield(obj, property)
     end

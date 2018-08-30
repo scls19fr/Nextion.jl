@@ -300,11 +300,27 @@ end
 Get property of a Nextion object given by it's NexID
 """
 function getnexproperty(nid::NexID, property::Symbol, ::Type{Int})
-    error("ToDo")
+    error("ToDo getnexproperty Int")
 end
 
 function getnexproperty(nid::NexID, property::Symbol, ::Type{String})
-    error("ToDo")
+    #error("ToDo getnexproperty String")
+
+    # send cmd to Nextion
+    _name = String(Name(nid))
+    _property = String(property)
+    cmd = "get $_name.$_property"
+    println(cmd)
+    nexSerial = NexSerial(nid)
+    send(nexSerial, cmd)
+    sleep(1)
+    # receive Nextion message
+    timeout_ms = 1000
+    sp = nexSerial._serial
+    r = my_readuntil(sp, v_uint8_eoc, timeout_ms)
+    println(r)
+    s = String(r[2:end-3])
+    s
 end
 
 

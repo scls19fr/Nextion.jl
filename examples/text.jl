@@ -18,8 +18,8 @@ using Test
 
     sleep(1)
 
-    nexText.text = "Hello!"
-    #@test nexText.text == "Hello!"  # ToDo get text
+    nexText.text = "Hello"
+    @test nexText.text == "Hello"  # ToDo get text
 
     sleep(0.5)
 
