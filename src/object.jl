@@ -70,6 +70,28 @@ end
 String(pid::PageID) = string(pid._val)
 
 
+
+"""
+    PageID(nexSerial)
+
+Return PageID of current page.
+
+It send `sendme` command to Nextion and wait response.
+"""
+function PageID(nexSerial::NexSerial)::PageID
+    send(nexSerial, "sendme")
+    sp = nexSerial._serial
+    delim = Char.([0xff, 0xff, 0xff])
+    timeout_ms = 1000
+    s = readuntil(sp, delim, timeout_ms)
+    r = unsafe_wrap(Vector{UInt8}, s)
+    if r[1] != Integer(Return.Code.CURRENT_PAGE_ID_HEAD)
+        error("Nextion must return $(Return.Code.CURRENT_PAGE_ID_HEAD)")
+    end
+    PageID(r[2])
+end
+
+
 """
     ComponentID(nid) -> ComponentID
 

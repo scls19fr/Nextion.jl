@@ -63,6 +63,6 @@ Return if a page is currently shown or not.
 function isshown(page::NexPage)::Bool
     _nid = NexID(page)
     pid1 = PageID(_nid._nexSerial)  #ToDo: should be implemented
-    pid2 = PageID(page)
+    pid2 = PageID(NexID(page))
     pid1 == pid2
 end

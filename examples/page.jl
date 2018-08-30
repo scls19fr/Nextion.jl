@@ -24,12 +24,16 @@ using Test
 
     nexPage = nexPages[1]  # page0
     show(nexPage)
-    @assert PageID(NexID(nexPage)) == PageID(0x00)
+    @test PageID(NexID(nexPage)) == PageID(0x00)
+
+    sleep(2)
+
+    @test PageID(nexSerial) == PageID(0x00)  # return current page (send command sendme and wait response)
 
     sleep(0.1)
 
-    #@show isshown(nexPage[2])  #ToDo!!!
-    #@show !isshown(nexPage[1])
+    @test isshown(nexPages[1])  # Page 1 (ie page0) is visible
+    @test !isshown(nexPages[2])  # Page 2 (ie page1) is not visible
 
     close(nexSerial)
     @test true

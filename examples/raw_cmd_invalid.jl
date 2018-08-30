@@ -9,35 +9,50 @@ using LibSerialPort: sp_blocking_read
     nexSerial = NexSerial("/dev/ttyUSB0")
 
     function wait_response(ser)
-        bytes = UInt8[]
-        i = 0
-        nbend = 0
-        timeout = 10
+        #bytes = UInt8[]
+        #i = 0
+        #nbend = 0
+        #timeout = 10
         #port = nexSerial._serial.ref
         #returned_bytes = sp_blocking_read(port, 4000, timeout)
-        end0 = 0x00
-
-        while true
+        #delim = [Char(0xff), Char(0xff), Char(0xff)]
+        #delim = [Char(0xff), Char(0xff), Char(0xff)]
+        #0x050x05delim = Char.([0xff, 0xff, 0xff])
+        delim = Char.([0xff, 0xff, 0xff])
+        timeout_ms = 1000
+        s = readuntil(ser, delim, timeout_ms)
+        #r = Vector{UInt8}(s)
+        r = unsafe_wrap(Vector{UInt8}, s)
+        #println(typeof(r))
+        #=
+        #while true
+        while !eof(ser)
             byte = read(ser, UInt8)
-            if byte != 0
+            #if byte != 0
                 s = string(byte, base=16, pad=2)
                 println(s)
-            end
+            #end
             if i == 0
                 if byte != 0x00  # in ...
                     push!(bytes, byte)
+                    i = i + 1
                 end
             else
                 push!(bytes, byte)
-                if length(byte) > 3
+                if length(bytes) > 3
+                    #println(bytes)
+                    #println("$bytes[end], $bytes[end-1], $bytes[end-2]")
                     if bytes[end] == 0xff && bytes[end-1] == 0xff && bytes[end-2] == 0xff
-                        error("ToDo: should quit")
+                        break
+                    #elseif bytes[end] == 0x00 && bytes[end-1] == 0x00 && bytes[end-2] == 0x00 && bytes[end-3] == 0x00
+                    #    break
                     end
                 end
+                i = i + 1
             end
-            i = i + 1
         end
-        bytes
+        =#
+        r
     end
 
     @testset "valid" begin
