@@ -10,10 +10,10 @@ using Test
 
     send(nexSerial, "page pg_num")
 
+    #=
     sleep(1)
 
     nexNumber.value = 1
-    #@test nexNumber.value == 1  # ToDo get value
 
     sleep(1)
 
@@ -23,9 +23,36 @@ using Test
 
     sleep(1)
 
+    @test nexNumber.value == 2
+
+    sleep(1)
+
     nexNumber.value = 3
     nexNumber.backcolor = Colour.WHITE
     nexNumber.forecolor = Colour.RED
+
+
+    sleep(1)
+    =#
+
+    #=
+    n = typemax(Int32)
+    nexNumber.value = n
+    sleep(1)
+    @test nexNumber.value == n
+    =#
+
+    #=
+    n = typemin(Int32)
+    nexNumber.value = n
+    sleep(1)
+    @test nexNumber.value == n
+    =#
+
+    n = -2
+    nexNumber.value = n
+    sleep(1)
+    @test nexNumber.value == n
 
     close(nexSerial)
 

@@ -5,6 +5,7 @@ module Event
 
     using Nextion.Return
     using Nextion: PageID, ComponentID
+    using Nextion: hasend, ensurehasend
 
     module Touch
         @enum TouchEventCode::UInt8 begin
@@ -14,18 +15,6 @@ module Event
         function code(val::UInt8)
             TouchEventCode(val)
         end    
-    end
-
-
-    function hasend(msg::Vector{UInt8})
-        msg[end] == 0xff && msg[end-1] == 0xff && msg[end-2] == 0xff
-    end
-    
-    
-    function ensurehasend(msg::Vector{UInt8})
-        if !hasend(msg)
-            error("Event message must end with $v_uint8_eoc")
-        end
     end
 
 
@@ -159,10 +148,12 @@ module Event
             ensurehasend(msg)
             ensurehasexpectedlength(msg, StringHeadEvent)
             code = Return.code(msg[1])
+            @assert code == first(StringHeadEvent)
             value = String(msg[2:end - 3])
             new(code, value)
         end
     end
+    first(::Type{StringHeadEvent}) = Return.Code.STRING_HEAD
     #Base.length(::Type{StringHeadEvent}) = ???  # variable length
     
     
@@ -179,10 +170,12 @@ module Event
             ensurehasend(msg)
             ensurehasexpectedlength(msg, NumberHeadEvent)
             code = Return.code(msg[1])
+            @assert code == first(NumberHeadEvent)
             value = UInt32(msg[2]) + UInt32(msg[3]) << 8 + UInt32(msg[4]) << 16 + UInt32(msg[5]) << 24
             new(code, value)
         end
     end
+    first(::Type{NumberHeadEvent}) = Return.Code.NUMBER_HEAD
     Base.length(::Type{NumberHeadEvent}) = 8
     
 end
