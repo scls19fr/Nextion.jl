@@ -6,10 +6,11 @@ An interface for numerical valued widgets.
 struct INumericalValued <: AbstractINextion
     _nid::NexID
 
+    T
     rn  # RangeNumber type
 
-    function INumericalValued(nid::NexID, rn)
-        new(nid, rn)
+    function INumericalValued(nid::NexID, T, rn)
+        new(nid, T, rn)
     end
 end
 
@@ -22,7 +23,7 @@ Set value from `new_val` to Nextion object `obj`.
 function setproperty!(obj::INumericalValued, property::Symbol, new_val)
 
     if property == :value
-        setnexproperty!(NexID(obj), :val, Int32(new_val))
+        setnexproperty!(NexID(obj), :val, obj.T(new_val))
     else
         setfield!(obj, property, new_val)
     end
@@ -38,7 +39,7 @@ Get `value` property from Nextion object `obj`.
 function getproperty(obj::INumericalValued, property::Symbol)
 
     if property == :value
-        getnexproperty(NexID(obj), :val, Int)
+        getnexproperty(NexID(obj), :val, obj.T)
     else
         getfield(obj, property)
     end

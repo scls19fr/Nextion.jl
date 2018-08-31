@@ -57,6 +57,7 @@ using Test
         ]
         nexSerial = NexSerialMock()
         for ctl in controls
+            #println(ctl)
             ctl(nexSerial, Name("t0"), pid=PageID(0), cid=ComponentID(0))
         end
         @test 1==1

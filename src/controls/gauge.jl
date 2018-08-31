@@ -30,7 +30,7 @@ struct NexGauge <: AbstractNexObject
 
     function NexGauge(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid, RangeNumber{UInt16, 0:360}), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, UInt16, RangeNumber{UInt16, 0:360}), IColourable(nid), ITouchable(nid))
     end
 end
 

@@ -34,7 +34,8 @@ struct NexSlider <: AbstractNexObject
     
     function NexSlider(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid, RangeNumber{Int16, 0:typemax(UInt16)}), IColourable(nid), ITouchable(nid))
+        #new(nid, IViewable(nid), INumericalValued(nid, Int16, RangeNumber{Int16, 0:typemax(UInt16)}), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, UInt16, RangeNumber{UInt16, 0:typemax(UInt16)}), IColourable(nid), ITouchable(nid))
     end
 end
 

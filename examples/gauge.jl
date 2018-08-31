@@ -27,6 +27,8 @@ using Test
 
     sleep(1)
 
+    @test nexGauge.value == 90
+
     close(nexSerial)
     @test true
 

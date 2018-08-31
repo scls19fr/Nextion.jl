@@ -25,7 +25,7 @@ struct NexNumber <: AbstractNexObject
 
     function NexNumber(nexSerial::T, name::Name; pid=PageID(), cid=ComponentID()) where {T <: AbstractNexSerial}
         nid = NexID(nexSerial, name, pid, cid)
-        new(nid, IViewable(nid), INumericalValued(nid, nothing), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
+        new(nid, IViewable(nid), INumericalValued(nid, Int32, nothing), IFontStyleable(nid), IColourable(nid), ITouchable(nid))
     end
 end
 

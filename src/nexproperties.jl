@@ -41,7 +41,7 @@ getnexproperty(nid::NexID, property::Symbol)
 
 Get property of a Nextion object given by it's NexID
 """
-function getnexproperty(nid::NexID, property::Symbol, ::Type{Int})
+function getnexproperty(nid::NexID, property::Symbol, ::Type{T}) where {T<:Unsigned}
     # send cmd to Nextion
     _name = String(Name(nid))
     _property = String(property)
@@ -60,8 +60,12 @@ function getnexproperty(nid::NexID, property::Symbol, ::Type{Int})
     nb, r = sp_blocking_read(sp.ref, my_bytesavailable(sp), timeout_ms)
     @info r
     evt = Event.NumberHeadEvent(r)
-    #reinterpret(Int32, evt.value)  # two's complement for UInt32 to Int32
     evt.value
+end
+
+function getnexproperty(nid::NexID, property::Symbol, ::Type{T}) where {T<:Signed}
+    value = getnexproperty(nid, property, Unsigned)
+    reinterpret(Int32, value)  # two's complement for UInt32 to Int32
 end
 
 function getnexproperty(nid::NexID, property::Symbol, ::Type{String})
