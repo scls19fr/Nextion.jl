@@ -31,4 +31,5 @@ using Test
     #waveform(10)  # to avoid looping infinitely
     include("../examples/checkbox.jl")
     include("../examples/radio.jl")
+    #include("../examples/button.jl")  # to avoid looping infinitely
 end
