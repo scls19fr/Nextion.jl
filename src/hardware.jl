@@ -208,7 +208,8 @@ defined by `nexSerial`.
 """
 function read(nexSerial::NexSerial)
     ser = nexSerial._serial
-    r = read(ser, UInt8)
+    #r = read(ser, UInt8)
+    r = sp_blocking_read(nexSerial._serial.ref, bytesavailable(nexSerial._serial), nexSerial.timeout_ms)
 end
 
 
