@@ -56,9 +56,10 @@ module Draw
     `color` is used for fill color.
     """
     function rectangle(nexSerial::NexSerial,
-        x1::UInt16, y1::UInt16,
-        x2::UInt16, y2::UInt16,
-        color, mode=Background.NOBACKCOLOUR)
+        x1::T, y1::T,
+        x2::T, y2::T,
+        color, mode=Background.NOBACKCOLOUR) where {T <: Integer}
+        x1, y1, x2, y2 = UInt16.((x1, y1, x2, y2))
         if mode == Background.NOBACKCOLOUR
             send(nexSerial, "draw $x1,$y1,$x2,$y2,$color")
         elseif mode == Background.SOLIDCOLOUR
@@ -84,8 +85,9 @@ module Draw
     `color` is used for fill color.
     """
     function circle(nexSerial::NexSerial,
-        x::UInt16, y::UInt16,
-        r::UInt16, color, mode=Background.NOBACKCOLOUR)
+        x::T, y::T,
+        r::T, color, mode=Background.NOBACKCOLOUR) where {T <: Integer}
+        x, y, r = UInt16.((x, y, r))
         if mode == Background.NOBACKCOLOUR
             send(nexSerial, "cir $x,$y,$r,$color")
         elseif mode == Background.SOLIDCOLOUR
@@ -114,14 +116,15 @@ module Draw
     - `str`: Character content
     """
     function xstr(nexSerial::NexSerial,
-                x::UInt16, y::UInt16,
-                w::UInt16, h::UInt16,
+                x::T, y::T,
+                w::T, h::T,
                 fontid::UInt8,
                 fontcolor, backcolor,
                 xcenter::Alignment.Horizontal.AlignmentHorizontalCode,
                 ycenter::Alignment.Vertical.AlignmentVerticalCode,
                 sta::Background.BackgroundCode,
-                str::String)
+                str::String) where {T <: Integer}
+        x, y, w, h = UInt16.((x, y, w, h))
         xcenter = Int(xcenter)
         ycenter = Int(ycenter)
         sta = Int(sta)
@@ -136,9 +139,10 @@ module Draw
     the coordinate (`x1`, `y1`) and the coordinate (`x2`, `y2`)
     """
     function line(nexSerial::NexSerial,
-                x1::UInt16, y1::UInt16,
-                x2::UInt16, y2::UInt16,
-                color)
+                x1::T, y1::T,
+                x2::T, y2::T,
+                color) where {T <: Integer}
+        x1, y1, x2, y2 = UInt16.((x1, y1, x2, y2))
         send(nexSerial, "line $x1,$y1,$x2,$y2,$color")
     end
 
@@ -150,8 +154,9 @@ module Draw
     at the coordinate (`x`, `y`)
     """
     function picture(nexSerial::NexSerial,
-                x::UInt16, y::UInt16,
-                picid::UInt8)
+                x::T, y::T,
+                picid::UInt8) where {T <: Integer}
+        x, y = UInt16.((x, y))
         send(nexSerial, "pic $x,$y,$picid")
     end
 
@@ -164,9 +169,10 @@ module Draw
         Untested
     """
     function picture(nexSerial::NexSerial,
-                x::UInt16, y::UInt16,
-                w::UInt16, h::UInt16,
-                picid::UInt8)
+                x::T, y::T,
+                w::T, h::T,
+                picid::UInt8) where {T <: Integer}
+        x, y, w, h = UInt16.((x, y, w, h))
         send(nexSerial, "picq $x,$y,$w,$h,$picid")
     end
 
@@ -179,10 +185,11 @@ module Draw
         Untested
     """
     function picture(nexSerial::NexSerial,
-                x::UInt16, y::UInt16,
-                w::UInt16, h::UInt16,
-                x0::UInt16, y0::UInt16,
-                picid::UInt8)
+                x::T, y::T,
+                w::T, h::T,
+                x0::T, y0::T,
+                picid::UInt8) where {T <: Integer}
+        x, y, w, h, x0, y0 = UInt16.((x, y, w, h, x0, y0))
         send(nexSerial, "xpic $x,$y,$w,$h,$x0,$y0,$picid")  # xpic or picq?
     end     
 
