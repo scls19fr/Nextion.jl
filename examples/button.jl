@@ -13,10 +13,11 @@ using Test
 
     send(nexSerial, "page pg_but")
 
-    #=
-    sleep(1)
-    =#
-    value = 0
+    nexButtonPlus.backcolor = Colour.GREEN
+    nexButtonMinus.backcolor = Colour.RED
+
+    #nexNumber0.value = value
+    value = nexNumber0.value
     while true
         sleep(0.2)
         new_value = nexNumber0.value

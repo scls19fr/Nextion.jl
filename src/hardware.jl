@@ -234,11 +234,14 @@ function reset(nexSerial::NexSerial)
     sp = nexSerial._serial
     timeout_ms = nexSerial.timeout_ms
     #nb, r = wait_response(sp, timeout_ms)
-    r = checkcommandcomplete(sp, timeout_ms)
-    @assert r == [0x00, 0x00, 0x00, 0xff]
-    sleep(1)
-    r = checkcommandcomplete(sp, timeout_ms)
-    @assert r[end-1] == 0x88
+    #r = checkcommandcomplete(sp, timeout_ms)
+    #@info r
+    #@assert r == [0x00, 0x00, 0x00, 0xff]
+    #sleep(1)
+    #r = checkcommandcomplete(sp, timeout_ms)
+    r = readuntil_eoc(sp, nexSerial.timeout_ms)
+    @info r
+    #@assert r[end-1] == 0x88
 end
 
 
