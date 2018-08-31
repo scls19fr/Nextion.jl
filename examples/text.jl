@@ -4,12 +4,18 @@ using Test
 
 @testset "text" begin
 
+    println("Create NexSerial")
     nexSerial = NexSerial("/dev/ttyUSB0")
 
+    println("Init")
+    init(nexSerial)
+
+    println("Create objects")
     #nexText = NexText(nexSerial, Name("t1"), pid=PageID(2), cid=ComponentID(1))
     #nexText = NexText(nexSerial, Name("t1"))
     nexText = NexText(nexSerial, Name("t1"), cid=ComponentID(1))
-
+    
+    println("Reset")
     reset(nexSerial)
 
     sleep(1)
@@ -19,8 +25,11 @@ using Test
     sleep(1)
 
     nexText.text = "Hello"
+
+    sleep(1)
     @test nexText.text == "Hello"  # ToDo get text
 
+    #=
     sleep(0.5)
 
     nexText.backcolor = Colour.BLUE
@@ -61,6 +70,7 @@ using Test
 
     #reset(nexSerial)
     #sleep(0.5)
+    =#
 
     close(nexSerial)
 

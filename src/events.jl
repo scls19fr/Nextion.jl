@@ -17,7 +17,6 @@ module Event
     end
 
 
-
     function hasend(msg::Vector{UInt8})
         msg[end] == 0xff && msg[end-1] == 0xff && msg[end-2] == 0xff
     end
@@ -28,8 +27,18 @@ module Event
             error("Event message must end with $v_uint8_eoc")
         end
     end
+
+
+    abstract type  AbstractNexEvent end
+
+    abstract type ExpectedMessageSize end
+    struct SizeUnknown <: ExpectedMessageSize end
+    struct HasLength <: ExpectedMessageSize end
     
     
+    ExpectedMessageSize(::Type{<: AbstractNexEvent}) = SizeUnknown()
+
+
     function ensurehasexpectedlength(msg::Vector{UInt8}, typ::Type)
         if ExpectedMessageSize(typ) == HasLength()
             n = length(msg)
@@ -39,18 +48,7 @@ module Event
             end
         end
     end
-    
-    
-    abstract type  AbstractNexEvent end
-    
-    abstract type ExpectedMessageSize end
-    struct SizeUnknown <: ExpectedMessageSize end
-    struct HasLength <: ExpectedMessageSize end
-    
-    
-    ExpectedMessageSize(::Type{<: AbstractNexEvent}) = SizeUnknown()
-    
-    
+
     """
         TouchEvent(msg)
     

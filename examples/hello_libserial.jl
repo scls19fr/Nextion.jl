@@ -60,7 +60,9 @@ using Test
         _execute_command(sp, "page 1")
         sleep(2)
         _execute_command(sp, "t0.txt=\"Hello\"")
+        
         sleep(1)
+
         println("Read")
         _execute_command(sp, "get t0.txt")
         r = my_readuntil(sp, v_uint8_eoc, 1000)

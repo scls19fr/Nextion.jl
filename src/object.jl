@@ -317,7 +317,8 @@ function getnexproperty(nid::NexID, property::Symbol, ::Type{String})
     # receive Nextion message
     timeout_ms = 1000
     sp = nexSerial._serial
-    r = my_readuntil(sp, v_uint8_eoc, timeout_ms)
+    #r = my_readuntil(sp, v_uint8_eoc, timeout_ms)
+    nb, r = sp_blocking_read(sp.ref, bytesavailable(sp), timeout_ms)
     println(r)
     s = String(r[2:end-3])
     s

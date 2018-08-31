@@ -5,11 +5,12 @@ abstract type AbstractNexSerial end
 
 
 const DEFAULT_BAUDRATE = 9600
+const DEFAULT_TIMEOUT_MS = 1000
 
+const v_uint8_eoc = [0xff, 0xff, 0xff]  # Array{UInt8,1}
+# const v_char_eoc = Char.([0xff, 0xff, 0xff])  # Array{Char,1} ['ÿ', 'ÿ', 'ÿ']
+const s_eoc = String(copy(v_uint8_eoc))  # "\xff\xff\xff"
 
-v_uint8_eoc = [0xff, 0xff, 0xff]  # Array{UInt8,1}
-# v_char_eoc = Char.([0xff, 0xff, 0xff])  # Array{Char,1} ['ÿ', 'ÿ', 'ÿ']
-s_eoc = String(copy(v_uint8_eoc))  # "\xff\xff\xff"
 
 
 """
@@ -20,11 +21,14 @@ Nextion Screen serial connexion object.
 By default communication speed is set to DEFAULT_BAUDRATE = 9600 baud.
 """
 struct NexSerial <: AbstractNexSerial
-    function NexSerial(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
-        # new(SerialPort(args...; kwargs...))  # with SerialPorts.jl
-        new(open(portname, bps, args...; kwargs...))  # with LibSerialPort.jl
-    end
     _serial::SerialPort
+    timeout_ms::Int
+
+    function NexSerial(portname, bps=DEFAULT_BAUDRATE, timeout_ms=DEFAULT_TIMEOUT_MS, args...; kwargs...)
+        # new(SerialPort(args...; kwargs...))  # with SerialPorts.jl
+        sp = open(portname, bps, args...; kwargs...)
+        new(sp)  # with LibSerialPort.jl
+    end
 end
 
 """
@@ -37,11 +41,21 @@ This is a mock.
 Only use it for unit tests that don't need hardware
 """
 struct NexSerialMock <: AbstractNexSerial
-end
-function NexSerialMock(portname, bps=DEFAULT_BAUDRATE, args...; kwargs...)
-    NexSerialMock()
+    timeout_ms::Int
+
+    function NexSerialMock(portname="/dev/null", bps=DEFAULT_BAUDRATE, timeout_ms=DEFAULT_TIMEOUT_MS, args...; kwargs...)
+        new(timeout_ms)
+    end
 end
 
+
+function my_bytesavailable(sp)
+    n = bytesavailable(sp)
+    if n < 0
+        error("n must be positive")
+    end
+    n
+end
 
 """
     init(nexSerial)
@@ -51,7 +65,12 @@ Initialize Nextion serial communication.
 Serial communication is initialized by baudrate=9600
 """
 function init(nexSerial::NexSerial)
-    # ...
+    sp = nexSerial._serial
+    nb, r = sp_blocking_read(sp.ref, my_bytesavailable(sp), nexSerial.timeout_ms)
+    #my_readuntil(sp, v_uint8_eoc, nexSerial.timeout_ms)
+    #println(r)
+    #r
+    true
 end
 
 """
@@ -106,7 +125,8 @@ See https://github.com/andrewadare/LibSerialPort.jl/issues/23
 https://github.com/andrewadare/LibSerialPort.jl/issues/24
 """
 function my_readuntil(sp::SerialPort, delim::AbstractString, timeout_ms::Real)
-    return String(take!(readuntil(sp, Vector{Char}(delim), timeout_ms)))
+    return String(readuntil(sp, Vector{Char}(delim), timeout_ms))
+    #return String(take!(readuntil(sp, Vector{Char}(delim), timeout_ms)))
  end
  
 function my_readuntil(sp::SerialPort, delim::Vector{T}, timeout_ms::Real) where {T}
@@ -117,7 +137,7 @@ function my_readuntil(sp::SerialPort, delim::Vector{T}, timeout_ms::Real) where 
         if (time_ns() - start_time)/1e6 > timeout_ms
             break
         end
-        if bytesavailable(sp) > 0
+        if my_bytesavailable(sp) > 0
             c = read(sp, T)
             push!(out, c)
             lastchars = circshift(lastchars,-1)
@@ -170,12 +190,25 @@ end
 
 
 """
+    wait_response(nexSerial)
+
+
+"""
+function wait_response(nexSerial::NexSerial)
+    sp = nexSerial._serial
+    sp_blocking_read(sp.ref, my_bytesavailable(sp), nexSerial.timeout_ms)
+end
+
+"""
     reset(nexSerial)
 
 Reset Nextion device.
 """
 function reset(nexSerial::NexSerial)
     send(nexSerial, "rest")
+    sleep(1)
+    nb, r = wait_response(nexSerial)
+    println(r)
 end
 
 
@@ -187,9 +220,8 @@ Return true if command returned succesfully
 function checkcommandcomplete(nexSerial::NexSerial)
     #ret = false
     error("ToDo")
-    timeout = 10
     port = nexSerial._serial.ref
-    returned_bytes = sp_blocking_read(port, 4, timeout)
+    returned_bytes = sp_blocking_read(port, 4, nexSerial.timeout_ms)
     returned_bytes
 end
 
