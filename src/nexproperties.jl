@@ -60,6 +60,7 @@ function getnexproperty(nid::NexID, property::Symbol, ::Type{Int})
     nb, r = sp_blocking_read(sp.ref, my_bytesavailable(sp), timeout_ms)
     @info r
     evt = Event.NumberHeadEvent(r)
+    #reinterpret(Int32, evt.value)  # two's complement for UInt32 to Int32
     evt.value
 end
 

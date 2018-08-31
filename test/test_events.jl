@@ -89,11 +89,13 @@ using Test
 
         msg = [0x71, 0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]
         evt = NumberHeadEvent(msg)
-        @test evt.value == -2
+        @test evt.value == 0xfffffffe
+        @test evt.signedvalue == -2
 
         msg = UInt8[0x71, 0x00, 0x00, 0x00, 0x80, 0xff, 0xff, 0xff]
         evt = NumberHeadEvent(msg)
-        @test evt.value == typemin(Int32)
+        @test evt.value == 0x80000000
+        @test evt.signedvalue == typemin(Int32)
 
 
     end

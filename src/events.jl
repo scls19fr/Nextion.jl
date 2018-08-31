@@ -164,7 +164,8 @@ module Event
     """
     struct NumberHeadEvent <: AbstractNexEvent
         code::Return.Code.ReturnCode
-        value
+        value::UInt32
+        signedvalue::Int32
     
         function NumberHeadEvent(msg::Vector{UInt8})
             ensurehasend(msg)
@@ -172,7 +173,8 @@ module Event
             code = Return.code(msg[1])
             @assert code == first(NumberHeadEvent)
             value = UInt32(msg[2]) + UInt32(msg[3]) << 8 + UInt32(msg[4]) << 16 + UInt32(msg[5]) << 24
-            new(code, value)
+            signedvalue = reinterpret(Int32, value)
+            new(code, value, signedvalue)
         end
     end
     first(::Type{NumberHeadEvent}) = Return.Code.NUMBER_HEAD
