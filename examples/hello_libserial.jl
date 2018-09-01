@@ -42,31 +42,56 @@ using Test
     end
 
     function _execute_command(sp, cmd)
-        println(cmd)
+        @info "-> $cmd"
+        delim = "     "
+        s = delim * join(cmd, delim)
+        @info "->     $s"
         cmd = _format_command(cmd)
-        println(transcode(UInt8, cmd))
+        v_cmd_uint8 = transcode(UInt8, cmd)
+        @info "-> $v_cmd_uint8"
         write(sp, cmd)
         #_write_end_of_command(sp)
     end
+
+    function _blockin_read(sp::SerialPort, timeout_ms::Integer)
+        nb, msg = sp_blocking_read(sp.ref, bytesavailable(sp), timeout_ms)
+        @info "<- $msg"
+        println("")
+        msg
+    end    
 
     function main()
         list_ports()
 
         portname = "/dev/ttyUSB0"
         baudrate = 9600
+        timeout_ms = 3000
         sp = open(portname, baudrate)
+
+        _execute_command(sp, "bkcmd=3")
+        _blockin_read(sp, timeout_ms)
+
+        _execute_command(sp, "bkcmd=3")
+        _blockin_read(sp, timeout_ms)
+
         _execute_command(sp, "page 0")
-        sleep(2)
+        _blockin_read(sp, timeout_ms)
+        #sleep(2)
         _execute_command(sp, "page 1")
-        sleep(2)
+        _blockin_read(sp, timeout_ms)
+        #sleep(2)
         _execute_command(sp, "t0.txt=\"Hello\"")
-        
-        sleep(1)
+        _blockin_read(sp, timeout_ms)
+        #sleep(1)
 
         println("Read")
         _execute_command(sp, "get t0.txt")
-        r = my_readuntil(sp, v_uint8_eoc, 1000)
-        println(r)
+        #_blockin_read(sp, timeout_ms)
+        r = _blockin_read(sp, timeout_ms)
+
+
+        #r = my_readuntil(sp, v_uint8_eoc, 1000)
+        #println(r)
         s = String(r[2:end-3])
         println(s)
         @test s == "Hello"

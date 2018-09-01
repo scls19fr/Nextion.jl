@@ -11,7 +11,7 @@ using Test
     # nexPages is a Julia Vector and is 1-indexed
 
     nexPages = NexPage[]
-    pages_nb = 10
+    pages_nb = 22
     for i in 0:pages_nb-1
         nexPage = NexPage(nexSerial, Name("page$i"), pid=PageID(i), cid=ComponentID(0))
         push!(nexPages, nexPage)
@@ -21,6 +21,8 @@ using Test
         show(nexPages[i], PageID)
         sleep(0.5)
     end
+
+    sleep(2)
 
     nexPage = nexPages[1]  # page0
     show(nexPage)
