@@ -22,7 +22,7 @@ const IMG_WIDTH, IMG_HEIGHT = 200, 135
 
         x, y = 0, 10
         w, h = lcd_width, 30
-        fontid = UInt8(0)
+        font = Font(0)
         fontcolor = color1
         backcolor = color2
         xcenter = Alignment.Horizontal.CENTRE  # NONE/LEFT/CENTRE/RIGHT
@@ -42,7 +42,7 @@ const IMG_WIDTH, IMG_HEIGHT = 200, 135
             "/Nextion.jl"
         ]
         for line in lines
-            xstr(nexSerial, x, y, w, h, fontid, fontcolor, backcolor, xcenter, ycenter, sta, line)
+            xstr(nexSerial, x, y, w, h, font, fontcolor, backcolor, xcenter, ycenter, sta, line)
             y = y + h
             fontcolor, backcolor = swap(fontcolor, backcolor)    
         end
@@ -108,7 +108,7 @@ const IMG_WIDTH, IMG_HEIGHT = 200, 135
         x = Int(round((lcd_width - img_width) / 2))
         y = Int(round((lcd_height - img_height) / 2))
         for picid in 0:4
-            picture(nexSerial, x, y, UInt8(picid))
+            picture(nexSerial, x, y, Picture(picid))
             sleep(delay)
         end    
     end

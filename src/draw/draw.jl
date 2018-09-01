@@ -118,13 +118,14 @@ module Draw
     function xstr(nexSerial::NexSerial,
                 x::T, y::T,
                 w::T, h::T,
-                fontid::UInt8,
+                font::Font,
                 fontcolor, backcolor,
                 xcenter::Alignment.Horizontal.AlignmentHorizontalCode,
                 ycenter::Alignment.Vertical.AlignmentVerticalCode,
                 sta::Background.BackgroundCode,
                 str::String) where {T <: Integer}
         x, y, w, h = UInt16.((x, y, w, h))
+        fontid = font.id
         xcenter = Int(xcenter)
         ycenter = Int(ycenter)
         sta = Int(sta)
@@ -155,8 +156,9 @@ module Draw
     """
     function picture(nexSerial::NexSerial,
                 x::T, y::T,
-                picid::UInt8) where {T <: Integer}
+                pic::Picture) where {T <: Integer}
         x, y = UInt16.((x, y))
+        picid = pic.id
         send(nexSerial, "pic $x,$y,$picid")
     end
 
@@ -171,8 +173,9 @@ module Draw
     function picture(nexSerial::NexSerial,
                 x::T, y::T,
                 w::T, h::T,
-                picid::UInt8) where {T <: Integer}
+                pic::Picture) where {T <: Integer}
         x, y, w, h = UInt16.((x, y, w, h))
+        picid = pic.id
         send(nexSerial, "picq $x,$y,$w,$h,$picid")
     end
 
@@ -188,8 +191,9 @@ module Draw
                 x::T, y::T,
                 w::T, h::T,
                 x0::T, y0::T,
-                picid::UInt8) where {T <: Integer}
+                pic::Picture) where {T <: Integer}
         x, y, w, h, x0, y0 = UInt16.((x, y, w, h, x0, y0))
+        picid = pic.id
         send(nexSerial, "xpic $x,$y,$w,$h,$x0,$y0,$picid")  # xpic or picq?
     end     
 
