@@ -10,7 +10,10 @@ using Test
     show(nexPage)
 
     nexScrollText = NexScrollText(nexSerial, Name("g0"), pid=PageID(1))
-    nexScrollText.text = "Hello Nextion!"
+    msg = "Hello Nextion!"
+    nexScrollText.text = msg
+    assert nexScrollText.text == msg    
+    
     sleep(10)
 
     close(nexSerial)
