@@ -12,7 +12,7 @@ using Test
     nexScrollText = NexScrollText(nexSerial, Name("g0"), pid=PageID(1))
     msg = "Hello Nextion!"
     nexScrollText.text = msg
-    assert nexScrollText.text == msg    
+    @test nexScrollText.text == msg    
     
     sleep(10)
 
