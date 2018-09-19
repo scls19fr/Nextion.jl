@@ -15,14 +15,20 @@ using Test
     nexRadio0.value = false
     nexRadio1.value = false
     nexRadio2.value = false
+    
+    @test !nexRadio0.value
 
     sleep(1)
 
     nexRadio0.value = true
+    
+    @test nexRadio0.value
 
     sleep(1)
 
     nexRadio0.value = false
+
+    @test !nexRadio0.value
 
     sleep(1)
 
