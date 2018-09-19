@@ -15,14 +15,20 @@ using Test
     nexCheckbox0.value = false
     nexCheckbox1.value = false
     nexCheckbox2.value = false
+    
+    @test !nexCheckbox0.value
 
     sleep(1)
 
     nexCheckbox0.value = true
 
+    @test nexCheckbox0.value
+
     sleep(1)
 
     nexCheckbox0.value = false
+    
+    @test !nexCheckbox0.value
 
     sleep(1)
 
