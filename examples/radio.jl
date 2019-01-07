@@ -6,9 +6,9 @@ using Test
 
     nexSerial = NexSerial("/dev/ttyUSB0")
 
-    nexRadio0 = NexCheckbox(nexSerial, Name("r0"), cid=ComponentID(8))
-    nexRadio1 = NexCheckbox(nexSerial, Name("r1"), cid=ComponentID(9))
-    nexRadio2 = NexCheckbox(nexSerial, Name("r2"), cid=ComponentID(10))
+    nexRadio0 = NexRadio(nexSerial, Name("r0"), cid=ComponentID(8))
+    nexRadio1 = NexRadio(nexSerial, Name("r1"), cid=ComponentID(9))
+    nexRadio2 = NexRadio(nexSerial, Name("r2"), cid=ComponentID(10))
 
     send(nexSerial, "page pg_dsb_chk_rad")
 
