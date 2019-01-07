@@ -2,7 +2,7 @@
 
 To use a Nextion intelligent display you need:
 
-- a USB TTL converter (such as those using [Prolific PL2303](https://www.google.com/search?q=pl2303+usb+to+ttl) or [Silicon Labs CP2102](https://www.google.com/search?q=cp2102+usb+to+ttl) or [FTDI FT232RL](https://www.google.com/search?q=ft232rl+usb+to+ttl)) chip
+- a USB TTL converter (such as those using [Prolific PL2303](https://www.google.com/search?q=pl2303+usb+to+ttl) or [Silicon Labs CP2102](https://www.google.com/search?q=cp2102+usb+to+ttl) or [FTDI FT232RL](https://www.google.com/search?q=ft232rl+usb+to+ttl) chip)
 - or a computer with TTL output such as [Rasperry Pi](https://www.raspberrypi.org/) but probably many others [single-board computers (SBC)](https://en.wikipedia.org/wiki/Single-board_computer) with [Universal asynchronous receiver-transmitter (UART)](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter).
 
 Please follow the following wiring:
