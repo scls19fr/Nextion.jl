@@ -38,5 +38,5 @@ after_success:
 
   # Documenter auto-deploy
   # following `using` instruction is for triggering precompilation
-  - julia -e 'Pkg.add("Documenter")'
-  - julia -e 'cd(Pkg.dir("Nextion", "docs")); include("make.jl")'
+  - julia -e 'using Pkg; Pkg.add("Documenter")'
+  - julia -e 'using Pkg; cd(Pkg.dir("Nextion", "docs")); include("make.jl")'
