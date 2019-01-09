@@ -19,7 +19,7 @@ makedocs(
 
 deploydocs(
     repo = "github.com/scls19fr/Nextion.jl.git",
-    julia  = "0.7",
+    julia  = "1",
     latest = "master",
     target = "build",
     deps = nothing,  # we use the `format = :html`, without `mkdocs`
