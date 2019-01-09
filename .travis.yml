@@ -39,7 +39,7 @@ jobs:
       julia: 1.0
       os: linux
       script:
-        - julia -e 'using Pkg; Pkg.clone("https://github.com/andrewadare/LibSerialPort.jl"); Pkg.build("LibSerialPort");'
+        - julia --project=docs/ -e 'using Pkg; Pkg.clone("https://github.com/andrewadare/LibSerialPort.jl"); Pkg.build("LibSerialPort");'
         - julia --project=docs/ -e 'using Pkg; Pkg.instantiate();
                                     Pkg.develop(PackageSpec(path=pwd()))'
         - julia --project=docs/ docs/make.jl
