@@ -29,7 +29,7 @@ reset(::NexSerial)
 
 ```@docs
 Nextion.write(::NexSerial, cmd::String)
-Nextion._write_end_of_command
+Nextion._format_command
 Nextion.read(::NexSerial)
 Nextion.NexSerialMock
 ```

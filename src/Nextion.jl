@@ -58,6 +58,9 @@ module Nextion
     export Alignment, Background,
         Colour, Scroll, Baudrate, GPIO
 
+    # events
+    export Event
+
     # resources
     export Font, Picture
 

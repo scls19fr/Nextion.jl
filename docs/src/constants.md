@@ -17,6 +17,7 @@ Alignment.Vertical
 ```
 
 ### Private
+
 ```@docs
 Event.Touch
 ```

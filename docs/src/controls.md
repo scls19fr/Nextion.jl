@@ -200,4 +200,3 @@ NexSlider
 ```@docs
 NexWaveform
 ```
-

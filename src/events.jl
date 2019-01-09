@@ -7,6 +7,13 @@ module Event
     using Nextion: PageID, ComponentID
     using Nextion: hasend, ensurehasend
 
+    """
+    Module storing Touch Event enum
+
+    Usage:
+    - `Event.Touch.Press`
+    - `Event.Touch.Release`
+    """
     module Touch
         @enum TouchEventCode::UInt8 begin
             Press = 0x01
