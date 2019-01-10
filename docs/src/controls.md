@@ -29,10 +29,8 @@ NexText
 
 #### Public
 
-```@docs
 Base.setproperty!(::NexText, ::Symbol, new_val)
 Base.getproperty(::NexText, ::Symbol)
-```
 
 ## Button
 
