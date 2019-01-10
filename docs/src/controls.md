@@ -12,8 +12,9 @@ NexPage
 
 #### Public
 
-```@docs
 Base.show(::NexPage)
+
+```@docs
 isshown(::NexPage)
 ```
 
